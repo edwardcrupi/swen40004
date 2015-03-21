@@ -7,5 +7,5 @@ The model we have chosen to replicate is the `Ethnocentricity` model provided to
 ###Purpose
 The purppose 
 ###Users
-The users
+The users of this model would include not just computer scientists but also sociologists
 ###
