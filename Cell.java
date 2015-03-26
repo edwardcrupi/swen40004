@@ -1,10 +1,26 @@
 public class Cell {
 	int x, y;
-	boolean occupied;
-	public Cell (int newX, int newY) {
+	Agent occupyingAgent;
+
+	public Cell (int newX, int newY, Agent newOccupyingAgent) {
 		x = newX;
 		y = newY;
-		occupied = false;
+		occupyingAgent = newOccupyingAgent;
 	}
-	
+
+	public Cell (int newX, int newY){
+		x = newX;
+		y = newY;
+		occupyingAgent = null;
+	}
+
+	public Cell printCell(Cell cellToPrint){
+		if(cellToPrint.occupyingAgent == null ){
+			System.out.print(".");
+		}
+		else if (cellToPrint.occupyingAgent != null){
+			System.out.print(cellToPrint.occupyingAgent.colour);
+		}
+		return cellToPrint;
+	}
 }
