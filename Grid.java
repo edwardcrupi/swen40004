@@ -19,17 +19,34 @@ public class Grid {
 		}
 	}
 
-	public static Grid printGrid(Grid gridToPrint){
-		for(int x = 0; x < gridToPrint.width; x++)
+	public Grid printGrid(){
+		for(int x = 0; x < this.width; x++)
 		{
-			for(int y = 0; y < gridToPrint.length; y++){
-				gridToPrint.cell[x][y].printCell(gridToPrint.cell[x][y]);
-				if(y == gridToPrint.length-1){
+			for(int y = 0; y < this.length; y++){
+				this.cell[x][y].printCell();
+				if(y == this.length-1){
 					System.out.println();
 				}
 			}
 		}
 
-		return gridToPrint;
+		return this;
+	}
+
+	public Grid update(){
+		for(int x = 0; x < this.width; x++)
+		{
+			for(int y = 0; y < this.length; y++){
+				if(cell[x][y] != null)
+					cell[x][y].update();
+				/*
+				**
+					TODO: UPDATE GRID METHOD
+				**
+				*/
+			}
+		}
+
+		return this;
 	}
 }

@@ -14,13 +14,24 @@ public class Cell {
 		occupyingAgent = null;
 	}
 
-	public Cell printCell(Cell cellToPrint){
-		if(cellToPrint.occupyingAgent == null ){
+	public Cell printCell(){
+		if(this.occupyingAgent == null ){
 			System.out.print(". ");
 		}
-		else if (cellToPrint.occupyingAgent != null){
-			System.out.print(cellToPrint.occupyingAgent.colour.toString().substring(0,3)+" ");
+		else if (this.occupyingAgent != null){
+			System.out.print(this.occupyingAgent.colour.toString().substring(0,3)+" ");
 		}
-		return cellToPrint;
+		return this;
+	}
+
+	public Cell update(){
+		if(occupyingAgent!= null)
+			occupyingAgent.update();
+		/*
+		**
+			TODO: UPDATE CELL METHOD
+		**
+		*/
+		return this;
 	}
 }
