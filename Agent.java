@@ -1,7 +1,7 @@
 class Agent {
 
 	//Instance Variables
-	public enum colour {
+	public enum Colour {
 		RED, BLUE, GREEN
 	}
 
@@ -17,9 +17,12 @@ class Agent {
 	**
 	*/
 
-	public enum bias {
+	public enum Bias {
 		ETHNOCENTRIC, ALTRUIST, EGOIST, COSMOPOLITAN 
 	}
+
+	public Colour colour;
+	public Bias bias;
 
 	public Cell occupiedCell;
 	public int PTR;
@@ -28,31 +31,32 @@ class Agent {
 	public boolean cooperateWithDifferent;
 
 	//Constructor
-	public class Agent (newColour, newBias, newOccupiedCell, newPTR) {
+	public Agent (Colour newColour, Bias newBias, Cell newOccupiedCell, int newPTR) {
 		
 		//Set parameters
 		colour = newColour;
 		bias = newBias;
 		occupiedCell = newOccupiedCell;
 		PTR = newPTR;
-		switch(self.bias) {
+		switch(this.bias) {
 			case ETHNOCENTRIC:
-				self.cooperateWithSame = true;
-				self.cooperateWithDifferent = false;
+				this.cooperateWithSame = true;
+				this.cooperateWithDifferent = false;
 				break;
 			case ALTRUIST:
-				self.cooperateWithSame = true;
-				self.cooperateWithDifferent = true;
+				this.cooperateWithSame = true;
+				this.cooperateWithDifferent = true;
 				break;
 			case EGOIST:
-				self.cooperateWithSame = false;
-				self.cooperateWithDifferent = false;			
+				this.cooperateWithSame = false;
+				this.cooperateWithDifferent = false;			
 				break;
 			case COSMOPOLITAN:
-				self.cooperateWithSame = false;
-				self.cooperateWithDifferent = true;			
+				this.cooperateWithSame = false;
+				this.cooperateWithDifferent = true;			
 				break;
 			default: System.out.println("No bias set!");
+		}
 	}
 	
 	/*
