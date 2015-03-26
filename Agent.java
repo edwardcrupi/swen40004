@@ -2,7 +2,21 @@ class Agent {
 
 	//Instance Variables
 	public enum Colour {
-		RED, BLUE, GREEN
+		RED ("RED"), BLUE ("BLUE"), GREEN ("GREEN");
+		
+		private final String name;       
+
+    	private Colour(String s) {
+    	    name = s;
+    	}
+
+    	public String toString(){
+    		return name;
+    	}
+
+		public static Colour getRandom() {
+        	return values()[(int) (Math.random() * values().length)];
+    	}
 	}
 
 	/*
@@ -18,7 +32,21 @@ class Agent {
 	*/
 
 	public enum Bias {
-		ETHNOCENTRIC, ALTRUIST, EGOIST, COSMOPOLITAN 
+		ETHNOCENTRIC ("ETHNOCENTRIC"), ALTRUIST ("ALTRUIST"), EGOIST ("EGOIST"), COSMOPOLITAN ("COSMOPOLITAN");
+		
+		private final String name;
+
+		private Bias(String s) {
+    	    name = s;
+    	}
+
+    	public String toString(){
+    		return name;
+    	}
+
+		public static Bias getRandom() {
+        	return values()[(int) (Math.random() * values().length)];
+    	}
 	}
 
 	public Colour colour;

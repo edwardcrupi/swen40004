@@ -16,10 +16,10 @@ public class Cell {
 
 	public Cell printCell(Cell cellToPrint){
 		if(cellToPrint.occupyingAgent == null ){
-			System.out.print(".");
+			System.out.print(". ");
 		}
 		else if (cellToPrint.occupyingAgent != null){
-			System.out.print(cellToPrint.occupyingAgent.colour);
+			System.out.print(cellToPrint.occupyingAgent.colour.toString().substring(0,3)+" ");
 		}
 		return cellToPrint;
 	}
