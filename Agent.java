@@ -122,17 +122,39 @@ public class Agent {
 		}
 	}
 	
-	public Agent update(){
+	public void update(Grid grid){
 		/*
 		**
 			TODO: UPDATE AGENT
 
 		**
 		*/
-		return this;
+
+
+		//Identify neighbours coordinates
+		//The (n % m) + m is because the modulus operator in java
+		//actually returns the remainder, rather than the modulus
+		//in the range 0 > x < m
+		int leftx = ((this.occupiedCell.x - 1)%10) + 10;
+		int lefty = this.occupiedCell.y;
+		int rightx = ((this.occupiedCell.x + 1)%10) + 10;
+		int righty = this.occupiedCell.y;
+		int abovex = this.occupiedCell.x;
+		int abovey = ((this.occupiedCell.y + 1)%10) + 10;
+		int belowx = this.occupiedCell.x;
+		int belowy = ((this.occupiedCell.y - 1)%10) + 10;
+
+		//Interact with Von Neumann neighbourhood (in English: adjacent cells)
+		interact(grid.cell[leftx][lefty].occupyingAgent);
+		interact(grid.cell[rightx][righty].occupyingAgent);
+		interact(grid.cell[abovex][abovey].occupyingAgent);
+		interact(grid.cell[belowx][belowy].occupyingAgent);
 	}
 
-	public Agent interact(Agent otherAgent){
+	public void interact(Agent otherAgent){
+
+
+
 		/*
 		**
 			TODO:	INTERACTION WITH OTHER AGENTS METHOD
@@ -142,6 +164,5 @@ public class Agent {
 					IMMIGRANT-CHANCE-COOPERATE-WITH-DIFFERENT
 		**
 		*/
-		return this;
 	}
 }

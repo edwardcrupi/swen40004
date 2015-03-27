@@ -1,5 +1,5 @@
 # SWEN40004 - Assignment 1
-# Nasser Soueid and Edward Crupi
+# Naser Soueid and Edward Crupi
 
 # Overview
 This is our replication of a Cellular Automaton system that mimics 'Ethnocentricism' in a population.
