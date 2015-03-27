@@ -40,10 +40,13 @@ class Agent {
     	    name = s;
     	}
 
+    	//Define Bias.ETHNOCENTRIC.toString(); to return the string "ETHNOCENTRIC"
+    	//This seems unnecessary?
     	public String toString(){
     		return name;
     	}
 
+    	//Returns a random Bias value.
 		public static Bias getRandom() {
         	return values()[(int) (Math.random() * values().length)];
     	}
@@ -63,9 +66,15 @@ class Agent {
 		
 		//Set parameters
 		colour = newColour;
-		bias = newBias;
+		bias = newBias; //why not use the random bias function here? 
+		//In the NetLogo model the chance of different biases is configurable.
 		occupiedCell = newOccupiedCell;
 		PTR = newPTR;
+
+		//I don't like this structure. Wouldn't it be better to store the binaries coop-with-same
+		//and coop-with-diff and label their bias from there, rather than the other way around?
+		//that way it's easier to have them mutate (fluctuating binary values vs fluctuating enums that
+		//have to update to representative binary values)
 		switch(this.bias) {
 			case ETHNOCENTRIC:
 				this.cooperateWithSame = true;
