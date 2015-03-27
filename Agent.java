@@ -1,6 +1,8 @@
-class Agent {
+public class Agent {
 
 	//Instance Variables
+
+	//Defines the unique 'races' of people in the model. 
 	public enum Colour {
 		RED ("RED"), BLUE ("BLUE"), GREEN ("GREEN");
 		
@@ -30,7 +32,8 @@ class Agent {
 
 	**
 	*/
-
+	
+	/*
 	public enum Bias {
 		ETHNOCENTRIC ("ETHNOCENTRIC"), ALTRUIST ("ALTRUIST"), EGOIST ("EGOIST"), COSMOPOLITAN ("COSMOPOLITAN");
 		
@@ -41,7 +44,6 @@ class Agent {
     	}
 
     	//Define Bias.ETHNOCENTRIC.toString(); to return the string "ETHNOCENTRIC"
-    	//This seems unnecessary?
     	public String toString(){
     		return name;
     	}
@@ -51,30 +53,37 @@ class Agent {
         	return values()[(int) (Math.random() * values().length)];
     	}
 	}
+	*/
 
 	public Colour colour;
-	public Bias bias;
-
+	public String bias;
 	public Cell occupiedCell;
-	public int PTR;
+	//Ours lives will be easier with PTR as a float since it's how agents interact.
+	public float probReproduce;
+	public float deathRate;
 
 	public boolean cooperateWithSame;
 	public boolean cooperateWithDifferent;
 
 	//Constructor
-	public Agent (Colour newColour, Bias newBias, Cell newOccupiedCell, int newPTR) {
+	public Agent (Colour newColour, boolean cooperateWithSame, boolean cooperateWithDifferent,
+					 Cell occupiedCell, float probReproduce, float deathRate) {
 		
 		//Set parameters
 		colour = newColour;
-		bias = newBias; //why not use the random bias function here? 
+		this.cooperateWithSame = cooperateWithSame;
+		this.cooperateWithDifferent = cooperateWithDifferent;
 		//In the NetLogo model the chance of different biases is configurable.
-		occupiedCell = newOccupiedCell;
-		PTR = newPTR;
 
-		//I don't like this structure. Wouldn't it be better to store the binaries coop-with-same
+		this.occupiedCell = occupiedCell;
+		this.probReproduce = probReproduce;
+		this.deathRate = deathRate;
+
+		//I don't like this structure. Wouldn't it be better to store coop-with-same
 		//and coop-with-diff and label their bias from there, rather than the other way around?
 		//that way it's easier to have them mutate (fluctuating binary values vs fluctuating enums that
 		//have to update to representative binary values)
+		/*
 		switch(this.bias) {
 			case ETHNOCENTRIC:
 				this.cooperateWithSame = true;
@@ -94,12 +103,30 @@ class Agent {
 				break;
 			default: System.out.println("No bias set!");
 		}
+		*/
+
+		//Sets bias based on cooperation values.
+		if(this.cooperateWithSame = true) {
+			if (this.cooperateWithDifferent = false) {
+				this.bias = "ETHNOCENTRIC";
+			} else {
+				this.bias = "ALTRUIST";
+			}
+		}	
+		else {
+				if(this.cooperateWithDifferent = true) {
+					this.bias = "COSMOPOLITAN";
+				} else {
+					this.bias = "EGOIST";
+				}
+		}
 	}
 	
 	public Agent update(){
 		/*
 		**
 			TODO: UPDATE AGENT
+
 		**
 		*/
 		return this;

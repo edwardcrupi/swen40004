@@ -16,6 +16,7 @@ public class CellularAutomaton{
 			grid.update();
 			grid.printGrid();
 		}
+		
 		System.out.println("Done.");
 	}
 }

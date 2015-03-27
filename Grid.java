@@ -2,6 +2,7 @@ public class Grid {
 	int width, length;
 	Cell[][] cell;
 
+	//Generates a grid
 	public Grid (int newWidth, int newLength, boolean filled)
 	{
 		width = newWidth;
@@ -10,9 +11,12 @@ public class Grid {
 		for(int x = 0; x < width; x ++){
 			for(int y = 0; y < length; y++){
 				if (filled){
-					cell[x][y] = new Cell(x,y, new Agent(Agent.Colour.getRandom(),Agent.Bias.getRandom(), this.cell[x][y], 1));
+					//populates the grid with agents of random 'color(race)'
+					// the (Math.random < 0.5) generates a random boolean.
+					cell[x][y] = new Cell(x,y, new Agent(Agent.Colour.getRandom(),(Math.random() < 0.5), (Math.random() < 0.5), this.cell[x][y], 1, 1));
 				}
 				else if (!filled){
+					//sets up an empty grid
 					cell[x][y] = new Cell(x,y);
 				}
 			}
