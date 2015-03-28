@@ -12,7 +12,7 @@ public class Grid {
 			for(int y = 0; y < length; y++){
 				if (filled){
 					//populates the grid with agents of random 'color(race)'
-					// the (Math.random < 0.5) generates a random boolean.
+					// the (Math.random < 0.5) generates a random boolean for cooperation.
 					cell[x][y] = new Cell(x,y, new Agent(Agent.Colour.getRandom(),(Math.random() < 0.5), (Math.random() < 0.5), this.cell[x][y], 1, 1));
 				}
 				else if (!filled){

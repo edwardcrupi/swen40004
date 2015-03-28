@@ -66,11 +66,11 @@ public class Agent {
 	public boolean cooperateWithDifferent;
 
 	//Constructor
-	public Agent (Colour newColour, boolean cooperateWithSame, boolean cooperateWithDifferent,
+	public Agent (Colour colour, boolean cooperateWithSame, boolean cooperateWithDifferent,
 					 Cell occupiedCell, float probReproduce, float deathRate) {
 		
 		//Set parameters
-		colour = newColour;
+		this.colour = colour;
 		this.cooperateWithSame = cooperateWithSame;
 		this.cooperateWithDifferent = cooperateWithDifferent;
 		//In the NetLogo model the chance of different biases is configurable.
@@ -123,26 +123,21 @@ public class Agent {
 	}
 	
 	public void update(Grid grid){
-		/*
-		**
-			TODO: UPDATE AGENT
-
-		**
-		*/
-
-
 		//Identify neighbours coordinates
-		//The (n % m) + m is because the modulus operator in java
-		//actually returns the remainder, rather than the modulus
-		//in the range 0 > x < m
-		int leftx = ((this.occupiedCell.x - 1)%10) + 10;
-		int lefty = this.occupiedCell.y;
-		int rightx = ((this.occupiedCell.x + 1)%10) + 10;
-		int righty = this.occupiedCell.y;
-		int abovex = this.occupiedCell.x;
-		int abovey = ((this.occupiedCell.y + 1)%10) + 10;
-		int belowx = this.occupiedCell.x;
-		int belowy = ((this.occupiedCell.y - 1)%10) + 10;
+		/*
+		The (n % m) + m is because the modulus operator in java
+		actually returns the remainder in the range -m < x < m, 
+		rather than a modulus
+		in the range 0 < x < m
+		*/
+		int leftx = ((occupiedCell.x - 1)%10) + 10;
+		int lefty = occupiedCell.y;
+		int rightx = ((occupiedCell.x + 1)%10) + 10;
+		int righty = occupiedCell.y;
+		int abovex = occupiedCell.x;
+		int abovey = ((occupiedCell.y + 1)%10) + 10;
+		int belowx = occupiedCell.x;
+		int belowy = ((occupiedCell.y - 1)%10) + 10;
 
 		//Interact with Von Neumann neighbourhood (in English: adjacent cells)
 		interact(grid.cell[leftx][lefty].occupyingAgent);
@@ -153,13 +148,17 @@ public class Agent {
 
 	public void interact(Agent otherAgent){
 
+		//If they're the same color and cooperate with same
+		//or if they're different colour and cooperate with different
+		if ((colour == otherAgent.colour && cooperateWithSame) || (
+			colour != otherAgent.colour && cooperateWithDifferent)) {
+				probReproduce -= costOfGiving;
+				otherAgent.probReproduce += benefitOfReceiving;
+		}
 
 
 		/*
 		**
-			TODO:	INTERACTION WITH OTHER AGENTS METHOD
-					UPDATE PTR BASED ON COST-OF-GIVING
-					UPDATE PTR BASED ON GAIN-OF-RECEIVING
 					IMMIGRANT-CHANCE-COOPERATE-WITH-SAME
 					IMMIGRANT-CHANCE-COOPERATE-WITH-DIFFERENT
 		**

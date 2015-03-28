@@ -1,6 +1,8 @@
 public class CellularAutomaton{
 	public static Grid grid;
-	
+	public float costOfGiving;
+	public float benefitOfReceiving;
+
 	public static void main(String[] args){
 		//Initial Seed from Command Line
 		int x = Integer.parseInt(args[0]);
