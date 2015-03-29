@@ -136,19 +136,22 @@ public class Agent {
 		rather than a modulus
 		in the range 0 < x < m
 		*/
-		int width = grid.width-1;
-		int length = grid.length-1;
-		int leftx = ((x - 1)%width) + width;
+		int width = grid.width;
+		int height = grid.height;
+		int leftx = ((x - 1)%width);
+				if (leftx<0) {leftx += width;}
 		int lefty = y;
-		int rightx = ((x + 1)%width) + width;
+		int rightx = ((x + 1)%width);
 		int righty = y;
 		int abovex = x;
-		int abovey = ((y + 1)%length) + length;
+		int abovey = ((y - 1)%height);
+				if (abovey<0) {abovey += height;};
 		int belowx = x;
-		int belowy = ((y - 1)%length) + length;
+		int belowy = ((y + 1)%height);
 
-		System.out.printf("%d, %d, %d, %d, %d ,%d, %d, %d, %d, %d", width, length, 
+		System.out.printf("(%d, %d), (%d, %d), (%d ,%d), (%d, %d), (%d, %d)", x, y,
 			leftx, lefty, rightx, righty, abovex, abovey, belowx, belowy);
+		System.out.println();
 		//Interact with Von Neumann neighbourhood (in English: adjacent cells)
 		interact(grid.cell[leftx][lefty].occupyingAgent);
 		interact(grid.cell[rightx][righty].occupyingAgent);
