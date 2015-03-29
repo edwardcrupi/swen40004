@@ -3,7 +3,7 @@ public class Grid {
 	Cell[][] cell;
 
 	//Generates a grid
-	public Grid (int newWidth, int newLength, boolean filled)
+	public Grid (int newWidth, int newLength, boolean filled, double costOfGiving, double benefitOfReceiving, double ptr, double dr)
 	{
 		width = newWidth; //this is actually the length/height
 		height = newLength; //this is actually the width
@@ -13,7 +13,8 @@ public class Grid {
 				if (filled){
 					//populates the grid with agents of random 'color(race)'
 					// the (Math.random < 0.5) generates a random boolean for cooperation.
-					cell[y][x] = new Cell(x,y, new Agent(Agent.Colour.getRandom(),(Math.random() < 0.5), (Math.random() < 0.5), x, y, 1, 1));
+					cell[y][x] = new Cell(x,y, new Agent(Agent.Colour.getRandom(),(Math.random() < 0.5), (Math.random() < 0.5), 
+								x, y, costOfGiving, benefitOfReceiving, ptr, dr));
 				}
 				else if (!filled){
 					//sets up an empty grid

@@ -22,7 +22,7 @@ public class Cell {
 			System.out.print(". ");
 		}
 		else if (this.occupyingAgent != null){
-			System.out.print(this.occupyingAgent.colour.toString().substring(0,3)+" ");
+			System.out.print(this.occupyingAgent.colour.toString().substring(0,1)+" ");
 		}
 		return this;
 	}
