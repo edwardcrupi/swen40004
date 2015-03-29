@@ -67,16 +67,20 @@ public class Agent {
 
 	public float costOfGiving;
 	public float benefitOfReceiving;
+
+	public int x;
+	public int y;
 	//Constructor
 	public Agent (Colour colour, boolean cooperateWithSame, boolean cooperateWithDifferent,
-					 Cell occupiedCell, float probReproduce, float deathRate) {
+					int cellX, int cellY, float probReproduce, float deathRate) {
 		
 		//Set parameters
 		this.colour = colour;
 		this.cooperateWithSame = cooperateWithSame;
 		this.cooperateWithDifferent = cooperateWithDifferent;
 		//In the NetLogo model the chance of different biases is configurable.
-
+		x=cellX;
+		y=cellY;
 		this.occupiedCell = occupiedCell;
 		this.probReproduce = probReproduce;
 		this.deathRate = deathRate;
@@ -134,15 +138,17 @@ public class Agent {
 		*/
 		int width = grid.width-1;
 		int length = grid.length-1;
-		int leftx = ((occupiedCell.x - 1)%width) + width;
-		int lefty = occupiedCell.y;
-		int rightx = ((occupiedCell.x + 1)%width) + width;
-		int righty = occupiedCell.y;
-		int abovex = occupiedCell.x;
-		int abovey = ((occupiedCell.y + 1)%length) + length;
-		int belowx = occupiedCell.x;
-		int belowy = ((occupiedCell.y - 1)%length) + length;
+		int leftx = ((x - 1)%width) + width;
+		int lefty = y;
+		int rightx = ((x + 1)%width) + width;
+		int righty = y;
+		int abovex = x;
+		int abovey = ((y + 1)%length) + length;
+		int belowx = x;
+		int belowy = ((y - 1)%length) + length;
 
+		System.out.printf("%d, %d, %d, %d, %d ,%d, %d, %d, %d, %d", width, length, 
+			leftx, lefty, rightx, righty, abovex, abovey, belowx, belowy);
 		//Interact with Von Neumann neighbourhood (in English: adjacent cells)
 		interact(grid.cell[leftx][lefty].occupyingAgent);
 		interact(grid.cell[rightx][righty].occupyingAgent);

@@ -1,6 +1,6 @@
 public class Cell {
-	int x, y;
-	Agent occupyingAgent;
+	public int x, y;
+	public Agent occupyingAgent;
 
 	//Constrcutor for an occupied cell
 	public Cell (int newX, int newY, Agent newOccupyingAgent) {
@@ -28,8 +28,8 @@ public class Cell {
 	}
 
 	public Cell update(Grid grid){
-		if(occupyingAgent!= null)
-			occupyingAgent.update(grid);
+		if(this.occupyingAgent != null)
+			this.occupyingAgent.update(grid);
 		/* 
 		** 
 			TODO: UPDATE CELL METHOD

@@ -15,7 +15,7 @@ public class CellularAutomaton{
 		//Update Loop
 		for(int i = 0; i < ticks; i++){
 			System.out.println("t = " + (i+1));
-			grid.update(grid);
+			grid.update();
 			grid.printGrid();
 		}
 		
