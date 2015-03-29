@@ -84,6 +84,9 @@ public class Agent {
 		this.probReproduce = ptr;
 		this.deathRate = dr;
 		this.ptr = ptr;
+		this.costOfGiving = costOfGiving;
+		this.benefitOfReceiving = benefitOfReceiving;
+		
 		//I don't like this structure. Wouldn't it be better to store coop-with-same
 		//and coop-with-diff and label their bias from there, rather than the other way around?
 		//that way it's easier to have them mutate (fluctuating binary values vs fluctuating enums that
@@ -111,15 +114,15 @@ public class Agent {
 		*/
 
 		//Sets bias based on cooperation values.
-		if(this.cooperateWithSame = true) {
-			if (this.cooperateWithDifferent = false) {
+		if(this.cooperateWithSame == true) {
+			if (this.cooperateWithDifferent == false) {
 				this.bias = "ETHNOCENTRIC";
 			} else {
 				this.bias = "ALTRUIST";
 			}
 		}	
 		else {
-				if(this.cooperateWithDifferent = true) {
+				if(this.cooperateWithDifferent == true) {
 					this.bias = "COSMOPOLITAN";
 				} else {
 					this.bias = "EGOIST";
