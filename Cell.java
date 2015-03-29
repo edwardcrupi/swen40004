@@ -1,6 +1,14 @@
 public class Cell {
 	public int x, y;
-	public Agent occupyingAgent;
+	private Agent occupyingAgent;
+
+	public Agent getOccupyingAgent() {
+		return occupyingAgent;
+	}
+
+	public void setOccupyingAgent(Agent occupyingAgent) {
+		this.occupyingAgent = occupyingAgent;
+	}
 
 	//Constrcutor for an occupied cell
 	public Cell (int newX, int newY, Agent newOccupyingAgent) {

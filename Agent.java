@@ -130,7 +130,7 @@ public class Agent {
 		}
 	}
 	
-	public Agent[] neighbourhood(Grid grid) {
+	public Cell[] neighbourhood(Grid grid) {
 		//Identify neighbours coordinates
 				/*
 				The (n % m) + m is because the modulus operator in java
@@ -155,17 +155,17 @@ public class Agent {
 					leftx, lefty, rightx, righty, abovex, abovey, belowx, belowy);
 				System.out.println();
 				*/
-				Agent[] result = new Agent[4];
-				result[0] = grid.cell[lefty][leftx].occupyingAgent;
-				result[1] = grid.cell[righty][rightx].occupyingAgent;
-				result[2] = grid.cell[abovey][abovex].occupyingAgent;
-				result[3] = grid.cell[belowy][belowx].occupyingAgent;
+				Cell[] result = new Cell[4];
+				result[0] = Grid.cell[lefty][leftx];
+				result[1] = Grid.cell[righty][rightx];
+				result[2] = Grid.cell[abovey][abovex];
+				result[3] = Grid.cell[belowy][belowx];
 				
 				return result;
 	}
 	public void update(Grid grid){
 
-		Agent[] neighbour = this.neighbourhood(grid);
+		Cell[] neighbour = this.neighbourhood(grid);
 		
 		//Interact with Von Neumann neighbourhood (in English: adjacent cells)
 		interact(neighbour[0]);
@@ -180,16 +180,16 @@ public class Agent {
 		death(grid);
 	}
 
-	public void interact(Agent otherAgent){
+	public void interact(Cell otherAgent){
 
 		//If they're the same color and cooperate with same
 		//or if they're different colour and cooperate with different
 		//Update ptr.
-		if(otherAgent != null){
-			if ((colour == otherAgent.colour && cooperateWithSame) || (
-				colour != otherAgent.colour && cooperateWithDifferent)) {
+		if(otherAgent.getOccupyingAgent() != null){
+			if ((colour == otherAgent.getOccupyingAgent().colour && cooperateWithSame) || (
+				colour != otherAgent.getOccupyingAgent().colour && cooperateWithDifferent)) {
 					probReproduce -= costOfGiving;
-					otherAgent.probReproduce += benefitOfReceiving;
+					otherAgent.getOccupyingAgent().probReproduce += benefitOfReceiving;
 			}
 		}
 
@@ -204,14 +204,15 @@ public class Agent {
 	}
 	
 	//births agents into available cells
-	public void reproduce(Agent[] neighbours) {
+	public void reproduce(Cell[] neighbours) {
 		if (Math.random() < probReproduce) {
 			for(int i=0; i<4; i++) {
 				//look for empty neigbour
-				if(neighbours[i] == null) {
+				if(neighbours[i].getOccupyingAgent() == null) {
 					//inject identical agent (inherits parents properties)
-					neighbours[i] = new Agent(colour,cooperateWithSame, cooperateWithDifferent, x, y, costOfGiving, benefitOfReceiving, ptr, deathRate);
-					neighbours[i].mutate();
+					neighbours[i].setOccupyingAgent(
+							new Agent(colour,cooperateWithSame, cooperateWithDifferent, x, y, costOfGiving, benefitOfReceiving, ptr, deathRate));
+							neighbours[i].getOccupyingAgent().mutate();
 					break;
 				}
 			}
@@ -226,10 +227,10 @@ public class Agent {
 			this.colour=Agent.Colour.getRandom();
 		}
 		if(Math.random()<0.05) {
-			this.cooperateWithSame = (Math.random() < 0.5);
+			this.cooperateWithSame = (Math.random() < 0.05);
 		}
 		if(Math.random()<0.05) {
-			this.cooperateWithDifferent = (Math.random() < 0.5);
+			this.cooperateWithDifferent = (Math.random() < 0.05);
 			
 		}
 	}
@@ -239,7 +240,7 @@ public class Agent {
 	public void death(Grid grid) {
 		
 		if (Math.random() < deathRate) {
-			grid.cell[y][x] = new Cell(x,y);
+			Grid.cell[y][x] = new Cell(x,y);
 		}
 	}
 }

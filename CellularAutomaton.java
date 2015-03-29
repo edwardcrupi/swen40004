@@ -3,7 +3,7 @@ public class CellularAutomaton {
 	public static Grid grid;
 	public final static double costOfGiving = 0.1;
 	public final static double benefitOfReceiving = 0.2;
-	public final static double ptr = 0.6; //probability of reproducing per tick
+	public final static double ptr = 1; //probability of reproducing per tick
 	public final static double dr = 0.2;	//probability of death per tick
 	
 	public static void main(String[] args){

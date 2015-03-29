@@ -1,6 +1,6 @@
 public class Grid {
 	int width, height;
-	Cell[][] cell;
+	public static Cell[][] cell;
 
 	//Generates a grid
 	public Grid (int newWidth, int newLength, boolean filled, double costOfGiving, double benefitOfReceiving, double ptr, double dr)
@@ -28,7 +28,7 @@ public class Grid {
 		for(int y = 0; y < this.height; y++)
 		{
 			for(int x = 0; x < this.width; x++){
-				this.cell[y][x].printCell();
+				cell[y][x].printCell();
 				/*if(y == this.height-1){
 					System.out.println();
 				}*/
