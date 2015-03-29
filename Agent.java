@@ -182,10 +182,12 @@ public class Agent {
 		//If they're the same color and cooperate with same
 		//or if they're different colour and cooperate with different
 		//Update ptr.
-		if ((colour == otherAgent.colour && cooperateWithSame) || (
-			colour != otherAgent.colour && cooperateWithDifferent)) {
-				probReproduce -= costOfGiving;
-				otherAgent.probReproduce += benefitOfReceiving;
+		if(otherAgent != null){
+			if ((colour == otherAgent.colour && cooperateWithSame) || (
+				colour != otherAgent.colour && cooperateWithDifferent)) {
+					probReproduce -= costOfGiving;
+					otherAgent.probReproduce += benefitOfReceiving;
+			}
 		}
 
 
