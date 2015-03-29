@@ -1,16 +1,17 @@
-public class CellularAutomaton{
+
+public class CellularAutomaton {
 	public static Grid grid;
 	public float costOfGiving;
 	public float benefitOfReceiving;
 
 	public static void main(String[] args){
 		//Initial Seed from Command Line
-		int x = Integer.parseInt(args[0]);
-		int y = Integer.parseInt(args[1]);
+		int width = Integer.parseInt(args[0]);
+		int height = Integer.parseInt(args[1]);
 		boolean fill;
 		fill = args[2].equals("true") ? true : false;
 		int ticks = Integer.parseInt(args[3]);
-		grid = new Grid(x,y,fill);
+		grid = new Grid(width,height,fill);
 		
 		//Update Loop
 		for(int i = 0; i < ticks; i++){

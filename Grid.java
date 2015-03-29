@@ -1,34 +1,34 @@
 public class Grid {
-	int width, length;
+	int width, height;
 	Cell[][] cell;
 
 	//Generates a grid
 	public Grid (int newWidth, int newLength, boolean filled)
 	{
-		width = newWidth;
-		length = newLength;
-		cell = new Cell[width][length];
-		for(int x = 0; x < width; x ++){
-			for(int y = 0; y < length; y++){
+		width = newWidth; //this is actually the length/height
+		height = newLength; //this is actually the width
+		cell = new Cell[height][width];
+		for(int y = 0; y < height; y ++){
+			for(int x = 0; x < width; x++){
 				if (filled){
 					//populates the grid with agents of random 'color(race)'
 					// the (Math.random < 0.5) generates a random boolean for cooperation.
-					cell[x][y] = new Cell(x,y, new Agent(Agent.Colour.getRandom(),(Math.random() < 0.5), (Math.random() < 0.5), x, y, 1, 1));
+					cell[y][x] = new Cell(x,y, new Agent(Agent.Colour.getRandom(),(Math.random() < 0.5), (Math.random() < 0.5), x, y, 1, 1));
 				}
 				else if (!filled){
 					//sets up an empty grid
-					cell[x][y] = new Cell(x,y);
+					cell[y][x] = new Cell(x,y);
 				}
 			}
 		}
 	}
 
 	public Grid printGrid(){
-		for(int x = 0; x < this.width; x++)
+		for(int y = 0; y < this.height; y++)
 		{
-			for(int y = 0; y < this.length; y++){
-				this.cell[x][y].printCell();
-				if(y == this.length-1){
+			for(int x = 0; x < this.width; x++){
+				this.cell[y][x].printCell();
+				if(y == this.height-1){
 					System.out.println();
 				}
 			}
@@ -38,11 +38,11 @@ public class Grid {
 	}
 
 	public Grid update(){
-		for(int x = 0; x < this.width; x++)
+		for(int y = 0; y < this.height; y++)
 		{
-			for(int y = 0; y < this.length; y++){
-				if(cell[x][y] != null)
-					cell[x][y].update(this);
+			for(int x = 0; x < this.width; x++){
+				if(cell[y][x] != null)
+					cell[y][x].update(this);
 				/*
 
 				*/
