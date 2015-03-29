@@ -149,9 +149,11 @@ public class Agent {
 		int belowx = x;
 		int belowy = ((y + 1)%height);
 
-		System.out.printf("(%d, %d), (%d, %d), (%d ,%d), (%d, %d), (%d, %d)", x, y,
+		/*System.out.printf("(%d, %d), (%d, %d), (%d ,%d), (%d, %d), (%d, %d)", x, y,
 			leftx, lefty, rightx, righty, abovex, abovey, belowx, belowy);
 		System.out.println();
+		*/
+		
 		//Interact with Von Neumann neighbourhood (in English: adjacent cells)
 		interact(grid.cell[leftx][lefty].occupyingAgent);
 		interact(grid.cell[rightx][righty].occupyingAgent);

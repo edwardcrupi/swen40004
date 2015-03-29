@@ -28,10 +28,11 @@ public class Grid {
 		{
 			for(int x = 0; x < this.width; x++){
 				this.cell[y][x].printCell();
-				if(y == this.height-1){
+				/*if(y == this.height-1){
 					System.out.println();
-				}
+				}*/
 			}
+			System.out.println();
 		}
 
 		return this;
