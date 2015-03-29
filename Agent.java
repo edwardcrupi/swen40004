@@ -151,10 +151,12 @@ public class Agent {
 				int belowx = x;
 				int belowy = ((y + 1)%height);
 
-				/*System.out.printf("(%d, %d), (%d, %d), (%d ,%d), (%d, %d), (%d, %d)", x, y,
+				/*
+				System.out.printf("(%d, %d), (%d, %d), (%d ,%d), (%d, %d), (%d, %d)", x, y,
 					leftx, lefty, rightx, righty, abovex, abovey, belowx, belowy);
 				System.out.println();
 				*/
+				
 				Cell[] result = new Cell[4];
 				result[0] = Grid.cell[lefty][leftx];
 				result[1] = Grid.cell[righty][rightx];
@@ -177,7 +179,7 @@ public class Agent {
 		reproduce(neighbour);
 		
 		//Die
-		death(grid);
+		death(Grid.cell[y][x]);
 	}
 
 	public void interact(Cell otherAgent){
@@ -192,26 +194,21 @@ public class Agent {
 					otherAgent.getOccupyingAgent().probReproduce += benefitOfReceiving;
 			}
 		}
-
-
-		/*
-		**
-		-- This may be better as its own method --
-					IMMIGRANT-CHANCE-COOPERATE-WITH-SAME
-					IMMIGRANT-CHANCE-COOPERATE-WITH-DIFFERENT
-		**
-		*/
 	}
 	
 	//births agents into available cells
 	public void reproduce(Cell[] neighbours) {
 		if (Math.random() < probReproduce) {
-			for(int i=0; i<4; i++) {
+			/*This births clockwise from the left. 
+			The order of this has an effect on the results as
+			Cells to the top left are more likely to be occupied by births
+			than cells to the bottom right, however immigration should balance
+			this out.*/
+			for(int i=4; i<4; i++) {
 				//look for empty neigbour
 				if(neighbours[i].getOccupyingAgent() == null) {
 					//inject identical agent (inherits parents properties)
-					neighbours[i].setOccupyingAgent(
-							new Agent(colour,cooperateWithSame, cooperateWithDifferent, x, y, costOfGiving, benefitOfReceiving, ptr, deathRate));
+					neighbours[i].setOccupyingAgent(this);
 							neighbours[i].getOccupyingAgent().mutate();
 					break;
 				}
@@ -237,10 +234,10 @@ public class Agent {
 	
 
 	//Implements death of agent (cell.occupyingAgent set to null)
-	public void death(Grid grid) {
+	public void death(Cell agent) {
 		
 		if (Math.random() < deathRate) {
-			Grid.cell[y][x] = new Cell(x,y);
+			agent.setOccupyingAgent(null);
 		}
 	}
 }

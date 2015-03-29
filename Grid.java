@@ -1,10 +1,12 @@
 public class Grid {
 	int width, height;
 	public static Cell[][] cell;
-
+	private double probImmigrant, costOfGiving, benefitOfReceiving, ptr, dr;
+	
 	//Generates a grid
-	public Grid (int newWidth, int newLength, boolean filled, double costOfGiving, double benefitOfReceiving, double ptr, double dr)
+	public Grid (int newWidth, int newLength, boolean filled, double costOfGiving, double benefitOfReceiving, double ptr, double dr, double probImmigrant)
 	{
+		this.probImmigrant = probImmigrant;
 		width = newWidth; //this is actually the length/height
 		height = newLength; //this is actually the width
 		cell = new Cell[height][width];
@@ -43,11 +45,13 @@ public class Grid {
 		for(int y = 0; y < this.height; y++)
 		{
 			for(int x = 0; x < this.width; x++){
-				if(cell[y][x] != null)
+				if(cell[y][x].getOccupyingAgent() != null) {
 					cell[y][x].update(this);
-				/*
-
-				*/
+				} else if (Math.random() < probImmigrant){
+					//ALL HAIL DIVERSITY!
+					cell[y][x].setOccupyingAgent(new Agent(Agent.Colour.getRandom(),(Math.random() < 0.5), (Math.random() < 0.5), 
+							x, y, costOfGiving, benefitOfReceiving, ptr, dr));
+					}
 			}
 		}
 
