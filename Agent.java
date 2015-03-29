@@ -174,7 +174,7 @@ public class Agent {
 		reproduce(neighbour);
 		
 		//Die
-		
+		death(grid);
 	}
 
 	public void interact(Agent otherAgent){
@@ -226,6 +226,15 @@ public class Agent {
 		if(Math.random()<0.05) {
 			this.cooperateWithDifferent = (Math.random() < 0.5);
 			
+		}
+	}
+	
+
+	//Implements death of agent (cell.occupyingAgent set to null)
+	public void death(Grid grid) {
+		
+		if (Math.random() < deathRate) {
+			grid.cell[y][x] = new Cell(x,y);
 		}
 	}
 }
