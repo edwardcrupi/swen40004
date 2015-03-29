@@ -155,10 +155,10 @@ public class Agent {
 		*/
 		
 		//Interact with Von Neumann neighbourhood (in English: adjacent cells)
-		interact(grid.cell[leftx][lefty].occupyingAgent);
-		interact(grid.cell[rightx][righty].occupyingAgent);
-		interact(grid.cell[abovex][abovey].occupyingAgent);
-		interact(grid.cell[belowx][belowy].occupyingAgent);
+		interact(grid.cell[lefty][leftx].occupyingAgent);
+		interact(grid.cell[righty][rightx].occupyingAgent);
+		interact(grid.cell[abovey][abovex].occupyingAgent);
+		interact(grid.cell[belowy][belowx].occupyingAgent);
 	}
 
 	public void interact(Agent otherAgent){
