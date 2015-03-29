@@ -65,6 +65,8 @@ public class Agent {
 	public boolean cooperateWithSame;
 	public boolean cooperateWithDifferent;
 
+	public float costOfGiving;
+	public float benefitOfReceiving;
 	//Constructor
 	public Agent (Colour colour, boolean cooperateWithSame, boolean cooperateWithDifferent,
 					 Cell occupiedCell, float probReproduce, float deathRate) {
@@ -130,14 +132,16 @@ public class Agent {
 		rather than a modulus
 		in the range 0 < x < m
 		*/
-		int leftx = ((occupiedCell.x - 1)%10) + 10;
+		int width = grid.width-1;
+		int length = grid.length-1;
+		int leftx = ((occupiedCell.x - 1)%width) + width;
 		int lefty = occupiedCell.y;
-		int rightx = ((occupiedCell.x + 1)%10) + 10;
+		int rightx = ((occupiedCell.x + 1)%width) + width;
 		int righty = occupiedCell.y;
 		int abovex = occupiedCell.x;
-		int abovey = ((occupiedCell.y + 1)%10) + 10;
+		int abovey = ((occupiedCell.y + 1)%length) + length;
 		int belowx = occupiedCell.x;
-		int belowy = ((occupiedCell.y - 1)%10) + 10;
+		int belowy = ((occupiedCell.y - 1)%length) + length;
 
 		//Interact with Von Neumann neighbourhood (in English: adjacent cells)
 		interact(grid.cell[leftx][lefty].occupyingAgent);
@@ -150,6 +154,7 @@ public class Agent {
 
 		//If they're the same color and cooperate with same
 		//or if they're different colour and cooperate with different
+		//Update ptr.
 		if ((colour == otherAgent.colour && cooperateWithSame) || (
 			colour != otherAgent.colour && cooperateWithDifferent)) {
 				probReproduce -= costOfGiving;
@@ -159,6 +164,7 @@ public class Agent {
 
 		/*
 		**
+		-- This may be better as its own method --
 					IMMIGRANT-CHANCE-COOPERATE-WITH-SAME
 					IMMIGRANT-CHANCE-COOPERATE-WITH-DIFFERENT
 		**

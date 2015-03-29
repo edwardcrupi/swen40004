@@ -27,9 +27,9 @@ public class Cell {
 		return this;
 	}
 
-	public Cell update(){
+	public Cell update(Grid grid){
 		if(occupyingAgent!= null)
-			occupyingAgent.update();
+			occupyingAgent.update(grid);
 		/* 
 		** 
 			TODO: UPDATE CELL METHOD
