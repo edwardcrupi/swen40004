@@ -1,4 +1,3 @@
-
 public class CellularAutomaton {
 	public static Grid grid;
 	public final static double costOfGiving = 0.1;
@@ -12,19 +11,31 @@ public class CellularAutomaton {
 		//Initial Seed from Command Line
 		int width = Integer.parseInt(args[0]);
 		int height = Integer.parseInt(args[1]);
+		int ticks = Integer.parseInt(args[2]);
+
 		boolean fill;
-		fill = args[2].equals("true") ? true : false;
-		int ticks = Integer.parseInt(args[3]);
+		boolean stochUpdate;
+		fill = args[3].equals("true") ? true : false;
+		stochUpdate = args[4].equals("true") ? true : false;
+
 		grid = new Grid(width,height,fill);
 		
 		//Update Loop
 		System.out.println("t = 0");
 		grid.printGrid();
 
-		for(int i = 0; i < ticks; i++){
-			System.out.println("t = " + (i+1));
-			grid.update();
-			grid.printGrid();
+		if(stochUpdate) {
+			for(int i = 0; i < ticks; i++){
+				System.out.println("t = " + (i+1));
+				grid.stochUpdate();
+				grid.printGrid();
+			}
+		} else {
+			for(int i = 0; i < ticks; i++){
+				System.out.println("t = " + (i+1));
+				grid.update();
+				grid.printGrid();
+			}
 		}
 		
 		System.out.println("Done.");
