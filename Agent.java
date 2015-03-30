@@ -165,12 +165,7 @@ public class Agent {
 		interact(neighbour[1]);
 		interact(neighbour[2]);
 		interact(neighbour[3]);
-		
-		//Reproduce + mutate
-		reproduce(neighbour);
-		
-		//Die
-		death(Grid.cell[y][x]);
+
 	}
 
 	public void interact(Cell otherAgent){
@@ -188,7 +183,9 @@ public class Agent {
 	}
 	
 	//births agents into available cells
-	public void reproduce(Cell[] neighbours) {
+	public void reproduce(Grid grid) {
+		Cell[] neighbours = this.neighbourhood(grid);
+
 		if (Math.random() < probReproduce) {
 			/*This births clockwise from the left. 
 			The order of this has an effect on the results as
@@ -230,5 +227,9 @@ public class Agent {
 		if (Math.random() < CellularAutomaton.dr) {
 			agent.setOccupyingAgent(null);
 		}
+	}
+
+	public void resetPTR() {
+		this.probReproduce = CellularAutomaton.ptr;
 	}
 }
