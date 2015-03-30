@@ -59,20 +59,15 @@ public class Agent {
 	public String bias;
 	//Ours lives will be easier with PTR as a float since it's how agents interact.
 	public double probReproduce;
-	public double deathRate;
-	public double ptr; //default ptr for reproduction
 
 	public boolean cooperateWithSame;
 	public boolean cooperateWithDifferent;
-
-	public double costOfGiving;
-	public double benefitOfReceiving;
 
 	public int x;
 	public int y;
 	//Constructor
 	public Agent (Colour colour, boolean cooperateWithSame, boolean cooperateWithDifferent,
-					int cellX, int cellY, double costOfGiving, double benefitOfReceiving, double ptr, double dr) {
+					int cellX, int cellY) {
 		
 		//Set parameters
 		this.colour = colour;
@@ -81,11 +76,7 @@ public class Agent {
 		//In the NetLogo model the chance of different biases is configurable.
 		x=cellX;
 		y=cellY;
-		this.probReproduce = ptr;
-		this.deathRate = dr;
-		this.ptr = ptr;
-		this.costOfGiving = costOfGiving;
-		this.benefitOfReceiving = benefitOfReceiving;
+		this.probReproduce = CellularAutomaton.ptr;
 		
 		//I don't like this structure. Wouldn't it be better to store coop-with-same
 		//and coop-with-diff and label their bias from there, rather than the other way around?
@@ -190,8 +181,8 @@ public class Agent {
 		if(otherAgent.getOccupyingAgent() != null){
 			if ((colour == otherAgent.getOccupyingAgent().colour && cooperateWithSame) || (
 				colour != otherAgent.getOccupyingAgent().colour && cooperateWithDifferent)) {
-					probReproduce -= costOfGiving;
-					otherAgent.getOccupyingAgent().probReproduce += benefitOfReceiving;
+					probReproduce -= CellularAutomaton.costOfGiving;
+					otherAgent.getOccupyingAgent().probReproduce += CellularAutomaton.benefitOfReceiving;
 			}
 		}
 	}
@@ -208,7 +199,7 @@ public class Agent {
 				//look for empty neigbour
 				if(neighbours[i].getOccupyingAgent() == null) {
 					//inject identical agent (inherits parents properties)
-					neighbours[i].setOccupyingAgent(this);
+					neighbours[i].setOccupyingAgent(new Agent(this.colour, this.cooperateWithSame, this.cooperateWithDifferent, neighbours[i].x, neighbours[i].y));
 							neighbours[i].getOccupyingAgent().mutate();
 					break;
 				}
@@ -236,7 +227,7 @@ public class Agent {
 	//Implements death of agent (cell.occupyingAgent set to null)
 	public void death(Cell agent) {
 		
-		if (Math.random() < deathRate) {
+		if (Math.random() < CellularAutomaton.dr) {
 			agent.setOccupyingAgent(null);
 		}
 	}

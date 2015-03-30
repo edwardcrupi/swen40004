@@ -3,9 +3,10 @@ public class CellularAutomaton {
 	public static Grid grid;
 	public final static double costOfGiving = 0.1;
 	public final static double benefitOfReceiving = 0.02;
-	public final static double ptr = 0.4; //probability of reproducing per tick
-	public final static double dr = 0.4;	//probability of death per tick
-	public final static double probImmigrant = 0.4;
+	public final static double ptr = 0.2; //probability of reproducing per tick
+	public final static double dr = 0.7;	//probability of death per tick
+	public final static double probImmigrant = 0.3;
+	public final static int maxImmigrants = 10;
 	
 	public static void main(String[] args){
 		//Initial Seed from Command Line
@@ -14,7 +15,7 @@ public class CellularAutomaton {
 		boolean fill;
 		fill = args[2].equals("true") ? true : false;
 		int ticks = Integer.parseInt(args[3]);
-		grid = new Grid(width,height,fill, costOfGiving, benefitOfReceiving, ptr, dr, probImmigrant);
+		grid = new Grid(width,height,fill);
 		
 		//Update Loop
 		System.out.println("t = 0");
