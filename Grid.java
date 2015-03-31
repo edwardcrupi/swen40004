@@ -1,5 +1,5 @@
 public class Grid {
-	int width, height;
+	int width, height, CC, CD, DD, DC;
 	public static Cell[][] cell;
 	
 	//Generates a grid
@@ -57,6 +57,11 @@ public class Grid {
 		if (counter>=CellularAutomaton.maxImmigrants) break;
 		}
 
+		return this;
+	}
+
+	public Grid printStats(){
+		System.out.println("Strategy counts");
 		return this;
 	}
 }
