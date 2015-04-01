@@ -1,10 +1,10 @@
 public class CellularAutomaton {
 	public static Grid grid;
-	public final static double costOfGiving = 0.1;
-	public final static double benefitOfReceiving = 0.02;
-	public final static double ptr = 0.2; //probability of reproducing per tick
-	public final static double dr = 0;	//probability of death per tick
-	public final static double probImmigrant = 0.3;
+	public final static double costOfGiving = 0.01;
+	public final static double benefitOfReceiving = 0.03;
+	public final static double ptr = 0.12; //probability of reproducing per tick
+	public final static double dr = 0.1;	//probability of death per tick
+	public final static double probImmigrant = 0.4;
 	public final static int maxImmigrants = 10;
 	
 	public static void main(String[] args){
