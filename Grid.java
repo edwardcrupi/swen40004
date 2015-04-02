@@ -10,6 +10,7 @@ public class Grid {
 		width = newWidth; //this is actually the length/height
 		height = newLength; //this is actually the width
 		cell = new Cell[height][width];
+		CC = CD = DD = DC = 0;
 		for(int y = 0; y < height; y ++){
 			for(int x = 0; x < width; x++){
 				if (filled){
@@ -17,6 +18,8 @@ public class Grid {
 					// the (Math.random < 0.5) generates a random boolean for cooperation.
 					cell[y][x] = new Cell(x,y, new Agent(Agent.Colour.getRandom(),(Math.random() < 0.5), (Math.random() < 0.5), 
 								x, y));
+					countCell(cell[y][x]);
+
 				}
 				else if (!filled){
 					//sets up an empty grid
@@ -89,12 +92,14 @@ public class Grid {
 			}
 		}
 		
-		//reset ptr
+		//reset ptr and update the strategy counts
+		CC = CD = DD = DC = 0;
 		for(int y = 0; y < this.height; y++)
 		{
 			for(int x = 0; x < this.width; x++){
 				if(cell[y][x].getOccupyingAgent() != null) {
 					cell[y][x].getOccupyingAgent().resetPTR();
+					countCell(cell[y][x]);
 				} 
 			}
 		}
@@ -104,9 +109,10 @@ public class Grid {
 
 	public Grid printStats(){
 		System.out.println("Strategy counts");
+		System.out.println(CC+","+CD+","+DD+","+DC);
 		return this;
 	}
-	
+
 	public Grid stochUpdate() {
 		
 		//Generate randomly ordered indexes for the grid
@@ -159,12 +165,14 @@ public class Grid {
 			}
 		}
 		
-		//reset ptr
+		//reset ptr and get a reading of the strategy counts
+		CC = DD = DC = CD = 0;
 		for(int y = 0; y < this.height; y++)
 		{
 			for(int x = 0; x < this.width; x++){
 				if(cell[y][x].getOccupyingAgent() != null) {
 					cell[y][x].getOccupyingAgent().resetPTR();
+					countCell(cell[y][x]);
 				} 
 			}
 		}
@@ -179,6 +187,14 @@ public class Grid {
 			result[i] = i;
 		}
 		return result;
+	}
+
+	public void countCell(Cell x){
+		CC = (x.getOccupyingAgent().bias == "ALTRUIST") ? CC+1 : CC;
+		CD = (x.getOccupyingAgent().bias == "ETHNOCENTRIC") ? CD+1 : CD;
+		DD = (x.getOccupyingAgent().bias == "EGOIST") ? DD+1 : DD;
+		DC = (x.getOccupyingAgent().bias == "COSMOPOLITAN") ? DC+1 : DC;
+
 	}
 	
 	//Shuffle integers in an array.
