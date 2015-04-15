@@ -1,4 +1,9 @@
 import java.util.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 public class Grid {
 	int width, height, CC, CD, DD, DC;
@@ -11,6 +16,17 @@ public class Grid {
 		height = newLength; //this is actually the width
 		cell = new Cell[height][width];
 		CC = CD = DD = DC = 0;
+		//Create new header for the results file for the printStats function
+		try {
+			File file = new File("Results.csv");
+			file.createNewFile();
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write("CC, CD, DD, DC\n");
+			bw.close();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 		for(int y = 0; y < height; y ++){
 			for(int x = 0; x < width; x++){
 				if (filled){
@@ -109,7 +125,18 @@ public class Grid {
 
 	public Grid printStats(){
 		System.out.println("Strategy counts");
-		System.out.println(CC+","+CD+","+DD+","+DC);
+                String counts = new String(CC+","+CD+","+DD+","+DC);
+                System.out.println(counts);
+		try {
+			File file = new File("Results.csv");
+			FileWriter writer = new FileWriter(file.getAbsoluteFile(), true);
+			BufferedWriter bw = new BufferedWriter(writer);
+			PrintWriter out = new PrintWriter(bw);
+			out.println(counts);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return this;
 	}
 
