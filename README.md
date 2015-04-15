@@ -13,6 +13,7 @@ E.G:
 javac CellularAutomaton.java
 java CellularAutomaton 5 5 10 true false
 ```
+Will run the model on a 5x5 matrix for 10 ticks, initialized to capacity with deterministic updating. 
 
 # TODO
 Update methods for Agent and Cell classses. Interaction method for Agent class. Statistic reporting to verify results match netlogos results.

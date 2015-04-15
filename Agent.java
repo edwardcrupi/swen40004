@@ -192,7 +192,7 @@ public class Agent {
 			Cells to the top left are more likely to be occupied by births
 			than cells to the bottom right, however immigration should balance
 			this out.*/
-			for(int i=4; i<4; i++) {
+			for(int i=0; i<4; i++) {
 				//look for empty neigbour
 				if(neighbours[i].getOccupyingAgent() == null) {
 					//inject identical agent (inherits parents properties)
