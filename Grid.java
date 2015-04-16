@@ -63,6 +63,18 @@ public class Grid {
 	public Grid update(){
 		int counter = 0;
 
+		//reset ptr and update the strategy counts
+		CC = CD = DD = DC = 0;
+		for(int y = 0; y < this.height; y++)
+		{
+			for(int x = 0; x < this.width; x++){
+				if(cell[y][x].getOccupyingAgent() != null) {
+					cell[y][x].getOccupyingAgent().resetPTR();
+					countCell(cell[y][x]);
+				} 
+			}
+		}
+		
 		//Immigration happens here. 
 		for(int y = 0; y < this.height; y++)
 		{
@@ -104,18 +116,6 @@ public class Grid {
 			for(int x = 0; x < this.width; x++){
 				if(cell[y][x].getOccupyingAgent() != null) {
 					cell[y][x].getOccupyingAgent().death(Grid.cell[y][x]);
-				} 
-			}
-		}
-		
-		//reset ptr and update the strategy counts
-		CC = CD = DD = DC = 0;
-		for(int y = 0; y < this.height; y++)
-		{
-			for(int x = 0; x < this.width; x++){
-				if(cell[y][x].getOccupyingAgent() != null) {
-					cell[y][x].getOccupyingAgent().resetPTR();
-					countCell(cell[y][x]);
 				} 
 			}
 		}
@@ -222,6 +222,7 @@ public class Grid {
 		DD = (x.getOccupyingAgent().bias == "EGOIST") ? DD+1 : DD;
 		DC = (x.getOccupyingAgent().bias == "COSMOPOLITAN") ? DC+1 : DC;
 
+		
 	}
 	
 	//Shuffle integers in an array.

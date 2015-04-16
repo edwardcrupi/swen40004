@@ -105,6 +105,11 @@ public class Agent {
 		*/
 
 		//Sets bias based on cooperation values.
+
+		this.updateBias();
+	}
+	
+	public void updateBias() {
 		if(this.cooperateWithSame == true) {
 			if (this.cooperateWithDifferent == false) {
 				this.bias = "ETHNOCENTRIC";
@@ -120,7 +125,7 @@ public class Agent {
 				}
 		}
 	}
-	
+
 	public Cell[] neighbourhood(Grid grid) {
 		//Identify neighbours coordinates
 				/*
@@ -174,9 +179,9 @@ public class Agent {
 		//or if they're different colour and cooperate with different
 		//Update ptr.
 		if(otherAgent.getOccupyingAgent() != null){
-			if ((colour == otherAgent.getOccupyingAgent().colour && cooperateWithSame) || (
-				colour != otherAgent.getOccupyingAgent().colour && cooperateWithDifferent)) {
-					probReproduce -= CellularAutomaton.costOfGiving;
+			if ((colour == otherAgent.getOccupyingAgent().colour && cooperateWithSame) || 
+				(colour != otherAgent.getOccupyingAgent().colour && cooperateWithDifferent)) {
+					this.probReproduce -= CellularAutomaton.costOfGiving;
 					otherAgent.getOccupyingAgent().probReproduce += CellularAutomaton.benefitOfReceiving;
 			}
 		}
@@ -186,7 +191,7 @@ public class Agent {
 	public void reproduce(Grid grid) {
 		Cell[] neighbours = this.neighbourhood(grid);
 
-		if (Math.random() < probReproduce) {
+		if (Math.random() < this.probReproduce) {
 			/*This births clockwise from the left. 
 			The order of this has an effect on the results as
 			Cells to the top left are more likely to be occupied by births
@@ -198,6 +203,7 @@ public class Agent {
 					//inject identical agent (inherits parents properties)
 					neighbours[i].setOccupyingAgent(new Agent(this.colour, this.cooperateWithSame, this.cooperateWithDifferent, neighbours[i].x, neighbours[i].y));
 							neighbours[i].getOccupyingAgent().mutate();
+							neighbours[i].getOccupyingAgent().updateBias();
 					break;
 				}
 			}
@@ -205,19 +211,20 @@ public class Agent {
 		
 	}
 	
-	//This implements the 0.05 chance of mutation for newly born agents.
+	//This implements the 0.05 chance of mutationRateon for newly born agents.
 	public void mutate() {
 		
-		if(Math.random()<0.05) {
+		if(Math.random()<CellularAutomaton.mutationRate) {
 			this.colour=Agent.Colour.getRandom();
 		}
-		if(Math.random()<0.05) {
-			this.cooperateWithSame = (Math.random() < 0.05);
+		if(Math.random()<CellularAutomaton.mutationRate) {
+			this.cooperateWithSame = !this.cooperateWithSame;
 		}
-		if(Math.random()<0.05) {
-			this.cooperateWithDifferent = (Math.random() < 0.05);
-			
+		if(Math.random()<CellularAutomaton.mutationRate) {
+			this.cooperateWithDifferent = !this.cooperateWithDifferent;
 		}
+
+		this.updateBias();
 	}
 	
 
