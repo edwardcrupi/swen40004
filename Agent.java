@@ -216,11 +216,7 @@ public class Agent {
 		
 		if(Math.random()<CellularAutomaton.mutationRate) {
 			this.colour=Agent.Colour.getRandom();
-		}
-		if(Math.random()<CellularAutomaton.mutationRate) {
 			this.cooperateWithSame = !this.cooperateWithSame;
-		}
-		if(Math.random()<CellularAutomaton.mutationRate) {
 			this.cooperateWithDifferent = !this.cooperateWithDifferent;
 		}
 
