@@ -4,21 +4,24 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.util.Date;
 
 public class Grid {
 	int width, height, CC, CD, DD, DC;
+	String timestamp;
 	public static Cell[][] cell;
 	
 	//Generates a grid
 	public Grid (int newWidth, int newLength, boolean filled)
 	{
+		timestamp = new Date().toString()+".csv";
 		width = newWidth; //this is actually the length/height
 		height = newLength; //this is actually the width
 		cell = new Cell[height][width];
 		CC = CD = DD = DC = 0;
 		//Create new header for the results file for the printStats function
 		try {
-			File file = new File("Results.csv");
+			File file = new File(timestamp);
 			file.createNewFile();
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -128,7 +131,7 @@ public class Grid {
                 String counts = new String(CC+","+CD+","+DD+","+DC);
                 System.out.println(counts);
 		try {
-			File file = new File("Results.csv");
+			File file = new File(timestamp);
 			FileWriter writer = new FileWriter(file.getAbsoluteFile(), true);
 			BufferedWriter bw = new BufferedWriter(writer);
 			PrintWriter out = new PrintWriter(bw);
