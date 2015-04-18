@@ -1,7 +1,5 @@
 public class Agent {
 
-	//Instance Variables
-
 	//Defines the unique 'races' of people in the model. 
 	public enum Colour {
 		RED ("RED"), BLUE ("BLUE"), GREEN ("GREEN");
@@ -21,43 +19,10 @@ public class Agent {
     	}
 	}
 
-	/*
-	**
-
-	This could also be defined as:
-
-	public enum bias {
-		CD, CC, DD, DC
-	}
-
-	**
-	*/
-	
-	/*
-	public enum Bias {
-		ETHNOCENTRIC ("ETHNOCENTRIC"), ALTRUIST ("ALTRUIST"), EGOIST ("EGOIST"), COSMOPOLITAN ("COSMOPOLITAN");
-		
-		private final String name;
-
-		private Bias(String s) {
-    	    name = s;
-    	}
-
-    	//Define Bias.ETHNOCENTRIC.toString(); to return the string "ETHNOCENTRIC"
-    	public String toString(){
-    		return name;
-    	}
-
-    	//Returns a random Bias value.
-		public static Bias getRandom() {
-        	return values()[(int) (Math.random() * values().length)];
-    	}
-	}
-	*/
+	//Instance Variables
 
 	public Colour colour;
 	public String bias;
-	//Ours lives will be easier with PTR as a float since it's how agents interact.
 	public double probReproduce;
 
 	public boolean cooperateWithSame;
@@ -65,6 +30,7 @@ public class Agent {
 
 	public int x;
 	public int y;
+
 	//Constructor
 	public Agent (Colour colour, boolean cooperateWithSame, boolean cooperateWithDifferent,
 					int cellX, int cellY) {
@@ -73,36 +39,9 @@ public class Agent {
 		this.colour = colour;
 		this.cooperateWithSame = cooperateWithSame;
 		this.cooperateWithDifferent = cooperateWithDifferent;
-		//In the NetLogo model the chance of different biases is configurable.
 		x=cellX;
 		y=cellY;
 		this.probReproduce = CellularAutomaton.ptr;
-		
-		//I don't like this structure. Wouldn't it be better to store coop-with-same
-		//and coop-with-diff and label their bias from there, rather than the other way around?
-		//that way it's easier to have them mutate (fluctuating binary values vs fluctuating enums that
-		//have to update to representative binary values)
-		/*
-		switch(this.bias) {
-			case ETHNOCENTRIC:
-				this.cooperateWithSame = true;
-				this.cooperateWithDifferent = false;
-				break;
-			case ALTRUIST:
-				this.cooperateWithSame = true;
-				this.cooperateWithDifferent = true;
-				break;
-			case EGOIST:
-				this.cooperateWithSame = false;
-				this.cooperateWithDifferent = false;			
-				break;
-			case COSMOPOLITAN:
-				this.cooperateWithSame = false;
-				this.cooperateWithDifferent = true;			
-				break;
-			default: System.out.println("No bias set!");
-		}
-		*/
 
 		//Sets bias based on cooperation values.
 
@@ -129,11 +68,13 @@ public class Agent {
 	public Cell[] neighbourhood(Grid grid) {
 		//Identify neighbours coordinates
 				/*
-				The (n % m) + m is because the modulus operator in java
-				actually returns the remainder in the range -m < x < m, 
+				The if statements with the (n % m) + m is because the modulus
+				operator in java actually returns the remainder in the range
+				-m < x < m, 
 				rather than a modulus
 				in the range 0 < x < m
 				*/
+
 				int width = grid.width;
 				int height = grid.height;
 				int leftx = ((x - 1)%width);
@@ -202,6 +143,7 @@ public class Agent {
 				if(neighbours[i].getOccupyingAgent() == null) {
 					//inject identical agent (inherits parents properties)
 					neighbours[i].setOccupyingAgent(new Agent(this.colour, this.cooperateWithSame, this.cooperateWithDifferent, neighbours[i].x, neighbours[i].y));
+							//give the child a chance to mutate and then update its bias
 							neighbours[i].getOccupyingAgent().mutate();
 							neighbours[i].getOccupyingAgent().updateBias();
 					break;
@@ -211,12 +153,17 @@ public class Agent {
 		
 	}
 	
-	//This implements the 0.05 chance of mutationRateon for newly born agents.
+	//This implements chance of mutation for newly born agents.
 	public void mutate() {
 		
+		//MutationRate probability of randomly assigning color or flipping preference
 		if(Math.random()<CellularAutomaton.mutationRate) {
 			this.colour=Agent.Colour.getRandom();
+		}
+		if(Math.random()<CellularAutomaton.mutationRate) {
 			this.cooperateWithSame = !this.cooperateWithSame;
+		}
+		if(Math.random()<CellularAutomaton.mutationRate) {
 			this.cooperateWithDifferent = !this.cooperateWithDifferent;
 		}
 

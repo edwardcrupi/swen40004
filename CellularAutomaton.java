@@ -5,9 +5,14 @@ public class CellularAutomaton {
 	public final static double benefitOfReceiving = 0.03;
 	public final static double ptr = 0.12; //probability of reproducing per tick
 	public final static double dr = 0.1;	//probability of death per tick
-	//public final static double probImmigrant = 0.4; //this is a shit way to do it.
-	public final static int maxImmigrants = 1;//per day
+	public final static int maxImmigrants = 1;//per tick
 	public final static double mutationRate = 0.005;
+	//Set Probability of spawning immigrant = to death rate.
+	//Will work fine except where the grid STARTS empty and the updateing
+	//is done deterministically, in which case 
+	//most immigrants will appear at the top of the grid given relatively
+	//low macImmigrants value or deathRate. Therefore if the grid starts
+	//empty, set Stochastic updating to true.
 	public final static double probImmigrant = dr;
 
 	public static void main(String[] args){
