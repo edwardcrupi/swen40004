@@ -2,7 +2,7 @@
 %Naser Soueid 359161 & Edward Crupi 538156
 
 #Aims
-The aim of this study is to examine the similarities and differences in 2 software implementations of the Ethnocentrism model first described by Ross Axelrod and Ross Hammond [Axelrod & Hammond, 2006](Axelrod & Hammond, 2006). specifically looking at their outputs and trying to d
+The aim of this study is to examine the similarities and differences in 2 software implementations of the Ethnocentrism model first described by Ross Axelrod and Ross Hammond ([Axelrod & Hammond, 2006](Axelrod & Hammond, 2006)). The first model examined is a NetLogo implementation that comes standard as part of the NetLogo package, the second is our own implementation, written in Java and trying to replicate the first NetLogo model. The 2 implementations are examined statistically. This is try and discern if they can be seen to similar via a standard statistical t-test. The outputs are also examined as line graphs of multiple runs to possibly find any trends or patterns that may not have emerged as a results of the t tests.
 
 #Background
 
