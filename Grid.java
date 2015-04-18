@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Grid {
 	int width, height, CC, CD, DD, DC;
@@ -14,7 +15,8 @@ public class Grid {
 	//Generates a grid
 	public Grid (int newWidth, int newLength, boolean filled)
 	{
-		timestamp = new Date().toString()+".csv";
+		SimpleDateFormat sdf = new SimpleDateFormat("MM_dd_HH_mm_ss");
+		timestamp = sdf.format(new Date()).toString()+".csv";
 		width = newWidth; //this is actually the length/height
 		height = newLength; //this is actually the width
 		cell = new Cell[height][width];

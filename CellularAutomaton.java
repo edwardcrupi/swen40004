@@ -32,7 +32,7 @@ public class CellularAutomaton {
 				for(int i = 0; i < ticks; i++){
 					System.out.println("t = " + (i+1));
 					grid.stochUpdate();
-					//grid.printGrid();
+					grid.printGrid();
 					grid.printStats();
 				}
 		} else {
