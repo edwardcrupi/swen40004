@@ -2,10 +2,10 @@
 %Naser Soueid 359161 & Edward Crupi 538156
 
 #Aims
-The aim of this study is to examine the similarities and differences in behaviour of two software implementations of the Ethnocentrism model first described by Ross Axelrod and Ross Hammond ([2003](#references)). The first model examined is a NetLogo implementation that comes standard as part of the NetLogo package, the second is our own implementation, written in Java and is an attempt to replicate the first NetLogo model. Both implementations are examined statistically to try and discern if they can be determined to follow a normal distribution via Shapiro Wilks tests, and if they appear to represent the same underlying solution set using Kolmogorov-Smirnov testing, as well as standard t-tests. The outputs are also examined as line graphs of multiple runs and as histograms to possibly find any trends or patterns that may not have emerged as a results of the other tests.
+The aim of this study is to examine the similarities and differences in behaviour of two software implementations of the Ethnocentrism model first described by Ross Axelrod and Ross Hammond ([2003](#references)). The first model examined is a NetLogo implementation that is included as part of the NetLogo model library, the second is our own implementation, written in Java and is an attempt to replicate the first NetLogo model. Both implementations are examined statistically to try and discern if they can be determined to follow a normal distribution via Shapiro Wilks tests, and if they appear to represent the same underlying solution set using Kolmogorov-Smirnov testing. The outputs are also examined as line graphs of multiple runs and as histograms to verify the results of these tests visually.
 
 #Background
-Ethnocentrism is a set of attitudes and behaviours that exist almost to the point of ubiquity in our world. Within this set, is the cooperation of members of the same ethnic type and non-cooperation (or defection from) members of another ethnic type. The model can be used as as a representation of different civilizations existing together in the same space. It has been said that the world peace's biggest threat is the 'clash of civilizations' ([Huntington, 1996](#references)). This makes Axelrod & Hammond's model and the notion of ethnocentrism itself a particularly interesting domain.
+Ethnocentrism is a set of attitudes and behaviours ubiquitous in our world, manifested in the formation of communities, nationalistic zeal, and similar examples of collective action based on like individual's mutually recognized common identity. Ethnocentrism refers to the tendency to cooperate with members of the same ethnic type and to avoid cooperating with members of another ethnic type. It has been said that the world peace's biggest threat is the 'clash of civilizations' ([Huntington, 1996](#references)). This makes Axelrod & Hammond's model and the notion of ethnocentrism itself a particularly interesting domain. The model aims to represent the emergent cooperation strategies in areas where different ethnicities coexist.
 
 ##Agents
 In the world of the Ethnocentrism model there are 4 distinct strategies an Agent may adopt during it's existance:
@@ -19,7 +19,11 @@ In the world of the Ethnocentrism model there are 4 distinct strategies an Agent
 The model is a complex system, it can be described as such due to four defining properties: Emergence, Self-Organization, Decentralization and propensity for Feedback.  The model shows emergent grouping of ethnic behaviour that organizes itself from the simple evolutionary rules of local competition between individuals. The model is a decentralized (agent-based, each agent is autonomous) cellular-automaton where there is no single controller or 'leader' that is sensitive to fluctuations in group size based on the size of the grid. It is due to this emergent, self-organizing, decentralized behaviour and sensitivity to feedback that the model may be described as a complex system. 
 
 #Model Design
+<<<<<<< HEAD
 The NetLogo model has many reporting functions that it uses to show the state of the system at any given passed moment in time. The main variables being reported were the number CC, CD, DD and DC agents extant within the system 
+=======
+The NetLogo model has many reporting functions that it uses to show the state of the system at any given passed moment in time. The main variables being reported were the number of 
+>>>>>>> 745e8ed966727f56c50bbf42e5cc0e0752ad473b
 
 ##Overview
 The model evolves with one-move Prisoner's Dilemma type interactions ([Rapoport & Chammah,1970](#references)) occuring at every step, where there is a price to be payed in helping someone whilst also conversely a benefit to be gained in being helped by someone. To replicate the model in Java a CellularAutomaton class was created that was comprised of a Grid instance than contained many Cell insctances that may or may not (depending on input) have occupying Agent instance. A UML interpretation of the system is shown below.
@@ -84,16 +88,7 @@ Once again our stochastically updating java implementation more closely matches 
 ##Experiment 2: NetLogo vs. Java with Stochastic Updating
 ###Default values
 
-###Varying Probability of Reproducting
 
-
-###Jointly Varying Cost of Giving and Benefit of Receiving
-
-###Varying Death Rate
-
-###Varying Immigration
-
-###Varying Mutation Rate
 
 ###Joint Variation
 
@@ -103,11 +98,19 @@ Once again our stochastically updating java implementation more closely matches 
 Discuss inherent bias to birth to left of agent if matrix is sparse due to reproduce function's implementation. (looks for empty space at left first)
 
 Discuss use of Kolmogorov-Smirnov with relatively small samples
+Discuss choice of KS given apparently normally distributed results. Was it necessary? Put choice down to the fact that the Shapiro-Wilk measured greater normality in NetLogo output vs our own, and KS allowed our tests to remain robust to samples that were not normally distributed. 
 
 Discuss use of Shapiro-Wilk and introduced bias by large datasets (ours is not too large, relatively speaking)
+
+Shapiro Wilk seems to suggest normal distribution quite strongly, particularly for NetLogo output. Discuss.
+
+
 Discuss use of histogram to verify result of Shapiro-Wilk
 
 Discuss that most comparisons test only on CD, using as an indicator. Not enough time to run and compare for all. 
+
+Discuss possibility of getting multiple samples from surrounding tick numbers to improve sample size without large computation cost. Might provide better 
+results.
 
 #References
 
@@ -116,3 +119,23 @@ Discuss that most comparisons test only on CD, using as an indicator. Not enough
 [Rapoport & Chammah, 1970](http://www.press.umich.edu/pdf/9780472061655-fm.pdf), 'Prisoner's Dilemma - A Study in Conflict and Cooperation', The University of Michigan, ISBN 0-472-96165-8
 
 [Huntington, 1996](http://www.academia.edu/4610592/Samuel_P_Huntington_The_Clash_of_Civilizations_and_the_Remaking_of_World_Order_1996) The Clash of Civilizations and the Remaking of World Order. New York: Simon and Schuster, ISBN 0-684-81164-2
+
+#Appendix
+![NetLogo](Histograms/NetLogoEmptyDefaultHistogram.png)
+\centerline{Figure 1.1.}
+
+![Java - Stochastic](Histograms/JavaStochEmptyDefaultHistogram.png)
+\centerline{Figure 1.2.}
+
+![Java - Deterministic](Histograms/JavaDetEmptyDefaultHistogram.png)
+\centerline{Figure 1.3.}
+
+![NetLogo](Histograms/NetLogoFullDefault.png)
+\centerline{Figure 1.3.}
+
+![Java - Stochastic](Histograms/JavaFullStochasticDefault.png)
+\centerline{Figure 1.3.}
+
+![Java - Deterministic](Histograms/JavaFullDeterministicDefault.png)
+\centerline{Figure 1.3.}
+>>>>>>> 745e8ed966727f56c50bbf42e5cc0e0752ad473b
