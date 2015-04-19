@@ -70,6 +70,16 @@ public class Agent {
 		this.updateBias();
 	}
 	
+	/*
+	**
+		updateBias
+		Behaviour:
+			Updates the bias variable of an agent depending on with whom it
+				cooperates.
+		Assumes:
+			-
+	**
+	*/
 	public void updateBias() {
 		if(this.cooperateWithSame == true) {
 			if (this.cooperateWithDifferent == false) {
@@ -87,6 +97,15 @@ public class Agent {
 		}
 	}
 
+	/*
+	**
+		neighbourhood
+		Behaviour:
+			Identifies neighbouring cells within the Von Neumann neighbourhood
+		Assumes:
+			grid not null
+	**
+	*/
 	public Cell[] neighbourhood(Grid grid) {
 		//Identify neighbours coordinates
 				/*
@@ -124,6 +143,16 @@ public class Agent {
 				
 				return result;
 	}
+
+	/*
+	**
+		update
+		Behaviour:
+			Updates the neighbours of an Agent.
+		Assumes:
+			-
+	**
+	*/
 	public void update(Grid grid){
 
 		Cell[] neighbour = this.neighbourhood(grid);
@@ -136,6 +165,15 @@ public class Agent {
 
 	}
 
+	/*
+	**
+		interact
+		Behaviour:
+			Interacts with another agent
+		Assumes:
+			-
+	**
+	*/
 	public void interact(Cell otherAgent){
 
 		//If they're the same color and cooperate with same
