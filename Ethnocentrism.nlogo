@@ -83,7 +83,7 @@ to create-turtle  ;; patch procedure
 end
 
 to-report random-color
-  report one-of [red blue yellow green]
+  report one-of [red blue green]
 end
 
 ;; this is used to clear stats that change between each tick
@@ -948,21 +948,17 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.1.0
+NetLogo 5.2-RC3
 @#$#@#$#@
 setup-full repeat 150 [ go ]
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
   <experiment name="empty" repetitions="200" runMetricsEveryStep="true">
-    <setup>setup-empty</setup>
+    <setup>setup-full</setup>
     <go>go</go>
-    <timeLimit steps="2000"/>
-    <exitCondition>reach-limit 1000</exitCondition>
-    <metric>cc-sum</metric>
+    <exitCondition>reach-limit 350</exitCondition>
     <metric>cd-sum</metric>
-    <metric>dc-sum</metric>
-    <metric>dd-sum</metric>
     <enumeratedValueSet variable="gain-of-receiving">
       <value value="0.03"/>
     </enumeratedValueSet>

@@ -46,20 +46,54 @@ The system uses a reporting method that outputs the numbers of Ethnocentric, Cos
 
 #Experimentation
 We aim to explore the following hypothesis:
-	1. The results from the Java implemnentation are robust against a change from deterministic updating (top left to bottom right) to stochastic updating
-	2. The Java implementation will produce output consistent with the NetLogo implementation
 
-## Deterministic vs. Stochastic Updating
-The updating method used by NetLogo is not explicitly stated. Here we will see if a change in updating method results in a systematic change in the output of our Java model, and then explore which, if either, produce results more statistically similar to the NetLogo model.
+1. The results from the Java implemnentation are robust against a change from deterministic updating (top left to bottom right) to stochastic updating.
+2. The Java implementation will produce output consistent with the NetLogo implementation.
 
-We are operating under the hypothesis that there will be little difference in the two. Deterministic updating may lead to population clusters around the top of the graph where the evolving populations are small, thus relatively high death rates, low immigration rates and low probabilities of reproduction are more likely to manifest this behaviour. If there are any differences between the two updating methods, they are likely to be more blatent and thus easier to test for. 
+We are operating under the hypothesis that there will be little difference in the two updating methods in scenarious with fairly densely populated grids. Deterministic updating may lead to population clusters around the top of the grid where the evolving populations are small, thus starting with an empty grid, relatively high death rates, low immigration allowances relative to the maximum number of agents and low probabilities of reproduction are more likely to manifest this behaviour. If there are any differences between the two updating methods, they are likely to be more blatent at these parameter values and thus easier to test for.
 
-##Analysing the Output
+All tests will be run only on the number of Ethnocentrics at tick 350. Through repeated observation of the output of all three variations of the model tested, this appers to represent a sufficiently stable, representative point in the output. Due to experimental limitations, testing on the number of the other three classes is done only between the NetLogo model and the Java implementation to give some insight into whether they are consistent. 
 
 #Results
+##Analysing the Output
+###Experiment 1: Deterministic vs. Stochastic Updating
+The updating method used by NetLogo is not explicitly stated. Here we will see if a change in updating method results in a systematic change in the output of our Java model, and then explore which, if either, produce results more statistically similar to the NetLogo model.
+
+Below are comparisons of the output of our Java model at NetLogo's default parameter settings of..
+
+A comparison of the frequency histograms as well as the Kolgorov-Smirnov test reveals that at the default settings (with the initial state of the system unpopulated and a limit of 1 immigrant per turn) on a 30x30 space reveals that the results are significantly different. Our results imply that at these settings stochastic updating matches the output from NetLogo far more closesly. 
+
+We repeated this test, this time starting with a fully populated grid, with all other parameters left the same. Surprisingly, a comparison of the relevant histograms, as well as the results of a Kolgorov-Smirnov test of Deterministic vs Stochastic updating reveals that the resulting distribution of output values are significantly different. 
+
+Once again our stochastically updating java implementation more closely matches the equivalent NetLogo output.
+
+##Experiment 2: NetLogo vs. Java with Stochastic Updating
+###Default values
+
+###Varying Probability of Reproducting
+
+
+###Jointly Varying Cost of Giving and Benefit of Receiving
+
+###Varying Death Rate
+
+###Varying Immigration
+
+###Varying Mutation Rate
+
+###Joint Variation
+
+
 
 #Discussion
-Discuss inherent bias to birth to left of agent if matrix is sparse.
+Discuss inherent bias to birth to left of agent if matrix is sparse due to reproduce function's implementation. (looks for empty space at left first)
+
+Discuss use of Kolmogorov-Smirnov with relatively small samples
+
+Discuss use of Shapiro-Wilk and introduced bias by large datasets (ours is not too large, relatively speaking)
+Discuss use of histogram to verify result of Shapiro-Wilk
+
+Discuss that most comparisons test only on CD, using as an indicator. Not enough time to run and compare for all. 
 
 #References
 

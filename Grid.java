@@ -163,9 +163,9 @@ public class Grid {
 
 	//Prints stats to the output file determined by the `timestamp` variable
 	public Grid printStats(){
-		System.out.println("Strategy counts");
+		//System.out.println("Strategy counts");
                 String counts = new String(CC+","+CD+","+DD+","+DC);
-                System.out.println(counts);
+                //System.out.println(counts);
 		try {
 			File file = new File(timestamp);
 			FileWriter writer = new FileWriter(file.getAbsoluteFile(), true);

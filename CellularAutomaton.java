@@ -73,20 +73,20 @@ public class CellularAutomaton {
 		grid = new Grid(width,height,fill);
 		
 		//Update Loop
-		System.out.println("t = 0");
-		grid.printGrid();
-		grid.printStats();
+		//System.out.println("t = 0");
+		//grid.printGrid();
+		//grid.printStats();
 
 		if(stochUpdate) {
 				for(int i = 0; i < ticks; i++){
-					System.out.println("t = " + (i+1));
+					//System.out.println("t = " + (i+1));
 					grid.stochUpdate();
 					//grid.printGrid();
 					grid.printStats();
 				}
 		} else {
 			for(int i = 0; i < ticks; i++){
-				System.out.println("t = " + (i+1));
+				//System.out.println("t = " + (i+1));
 				grid.update();
 				//grid.printGrid();
 				grid.printStats();
