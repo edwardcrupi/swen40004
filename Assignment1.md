@@ -55,8 +55,7 @@ We are operating under the hypothesis that there will be little difference in th
 All tests will be run only on the number of Ethnocentrics at tick 350. Through repeated observation of the output of all three variations of the model tested, this appers to represent a sufficiently stable, representative point in the output. Due to experimental limitations, testing on the number of the other three classes is done only between the NetLogo model and the Java implementation to give some insight into whether they are consistent. 
 
 #Results
-##Analysing the Output
-###Experiment 1: Deterministic vs. Stochastic Updating
+##Experiment 1: Deterministic vs. Stochastic Updating
 The updating method used by NetLogo is not explicitly stated. Here we will see if a change in updating method results in a systematic change in the output of our Java model, and then explore which, if either, produce results more statistically similar to the NetLogo model.
 
 Below are comparisons of the output of our Java model at NetLogo's default parameter settings of..
@@ -70,16 +69,7 @@ Once again our stochastically updating java implementation more closely matches 
 ##Experiment 2: NetLogo vs. Java with Stochastic Updating
 ###Default values
 
-###Varying Probability of Reproducting
 
-
-###Jointly Varying Cost of Giving and Benefit of Receiving
-
-###Varying Death Rate
-
-###Varying Immigration
-
-###Varying Mutation Rate
 
 ###Joint Variation
 
@@ -89,11 +79,19 @@ Once again our stochastically updating java implementation more closely matches 
 Discuss inherent bias to birth to left of agent if matrix is sparse due to reproduce function's implementation. (looks for empty space at left first)
 
 Discuss use of Kolmogorov-Smirnov with relatively small samples
+Discuss choice of KS given apparently normally distributed results. Was it necessary? Put choice down to the fact that the Shapiro-Wilk measured greater normality in NetLogo output vs our own, and KS allowed our tests to remain robust to samples that were not normally distributed. 
 
 Discuss use of Shapiro-Wilk and introduced bias by large datasets (ours is not too large, relatively speaking)
+
+Shapiro Wilk seems to suggest normal distribution quite strongly, particularly for NetLogo output. Discuss.
+
+
 Discuss use of histogram to verify result of Shapiro-Wilk
 
 Discuss that most comparisons test only on CD, using as an indicator. Not enough time to run and compare for all. 
+
+Discuss possibility of getting multiple samples from surrounding tick numbers to improve sample size without large computation cost. Might provide better 
+results.
 
 #References
 
