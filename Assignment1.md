@@ -136,3 +136,25 @@ results.
 \centerline{Figure 1.5.}
 
 ![Java - Deterministic](Histograms/JavaFullDeterministicDefault.png)
+\centerline{Figure 1.5.}
+
+![Java: Full, Stochastic vs Deterministic, Kolmogorov-Smirnov](Tables/KSJavaDetvsJavaStochDefaultFull.png)
+\centerline{Figure 1.4.}
+
+![NetLogo v Java Stochastic, Empty, Kolmogorov-Smirnov](Tables/NetLogoJavaDefaultEmptyKS.png)
+\centerline{Figure 1.4.}
+
+![NetLogo v Java Stochastic, Full, Kolmogorov-Smirnov](Tables/KSNetLogoJavaDefaultFull.png)
+\centerline{Figure 1.4.}
+
+![NetLogo v Java Stochastic, Full, Kolmogorov-Smirnov](Tables/KSNetLogoJavaDefaultFull.png)
+\centerline{Figure 1.4.}
+
+![NetLogo Normality - Shapiro Wilk](Tables/NetLogoEmptyDefaultDS.png)
+\centerline{Figure 1.4.}
+
+![Java Stochastic Normality - Shapiro Wilk](Tables/JavaEmptyDefaultDS.png)
+\centerline{Figure 1.4.}
+
+![Java Deterministic Normality - Shapiro Wilk](Tables/JavaDeterministicEmptyDefaultDS.png)
+\centerline{Figure 1.4.}
