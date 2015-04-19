@@ -19,11 +19,7 @@ In the world of the Ethnocentrism model there are 4 distinct strategies an Agent
 The model is a complex system, it can be described as such due to four defining properties: Emergence, Self-Organization, Decentralization and propensity for Feedback.  The model shows emergent grouping of ethnic behaviour that organizes itself from the simple evolutionary rules of local competition between individuals. The model is a decentralized (agent-based, each agent is autonomous) cellular-automaton where there is no single controller or 'leader' that is sensitive to fluctuations in group size based on the size of the grid. It is due to this emergent, self-organizing, decentralized behaviour and sensitivity to feedback that the model may be described as a complex system. 
 
 #Model Design
-<<<<<<< HEAD
-The NetLogo model has many reporting functions that it uses to show the state of the system at any given passed moment in time. The main variables being reported were the number CC, CD, DD and DC agents extant within the system 
-=======
-The NetLogo model has many reporting functions that it uses to show the state of the system at any given passed moment in time. The main variables being reported were the number of 
->>>>>>> 745e8ed966727f56c50bbf42e5cc0e0752ad473b
+The NetLogo model has many reporting functions that it uses to show the state of the system at any given passed moment in time. The main variables being reported were the number CC, CD, DD and DC agents extant within the system and our design will try and mimic this by also reporting these values
 
 ##Overview
 The model evolves with one-move Prisoner's Dilemma type interactions ([Rapoport & Chammah,1970](#references)) occuring at every step, where there is a price to be payed in helping someone whilst also conversely a benefit to be gained in being helped by someone. To replicate the model in Java a CellularAutomaton class was created that was comprised of a Grid instance than contained many Cell insctances that may or may not (depending on input) have occupying Agent instance. A UML interpretation of the system is shown below.
@@ -138,4 +134,3 @@ results.
 
 ![Java - Deterministic](Histograms/JavaFullDeterministicDefault.png)
 \centerline{Figure 1.3.}
->>>>>>> 745e8ed966727f56c50bbf42e5cc0e0752ad473b
