@@ -113,11 +113,23 @@ Order. New York: Simon and Schuster, ISBN 0-684-81164-2
 ![Java - Deterministic](Histograms/JavaDetEmptyDefaultHistogram.png)
 \centerline{Figure 1.3.}
 
+![Java: Empty, Stochastic vs Deterministic, Kolmogorov-Smirnov](Tables/StochvsDetEmptyKS.png)
+\centerline{Figure 1.4.}
+
 ![NetLogo](Histograms/NetLogoFullDefault.png)
-\centerline{Figure 1.3.}
+\centerline{Figure 1.4.}
 
 ![Java - Stochastic](Histograms/JavaFullStochasticDefault.png)
-\centerline{Figure 1.3.}
+\centerline{Figure 1.5.}
 
 ![Java - Deterministic](Histograms/JavaFullDeterministicDefault.png)
-\centerline{Figure 1.3.}
+\centerline{Figure 1.6.}
+
+![Java: Full, Stochastic vs Deterministic, Kolmogorov-Smirnov](Tables/KSJavaDetvsJavaStochDefaultFull.png)
+\centerline{Figure 1.4.}
+
+![NetLogo vs Java, Empty, Kolmogorov-Smirnov](Tables/NetLogoJavaDefaultEmptyKS.png)
+\centerline{Figure 1.4.}
+
+![NetLogo vs Java, Full, Kolmogorov-Smirnov](Tables/KSNetLogoJavaDefaultFull.png)
+\centerline{Figure 1.4.}
