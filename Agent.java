@@ -1,3 +1,25 @@
+/**
+**
+	Agent.java
+	The Agent class for the system replicating the Ethnocentrism
+	model used for Assignment 1 of SWEN40004 - Modelling Complex Software
+	Systems
+
+	Edward Crupi 538156 & Naser Soueid 359161
+
+	@Instance Variables
+	colour 					- The colour ('race') of the agent
+	bias 					- The bias of the agent, determins with whom it 
+								co-operates
+	probReproduce 			- The probability the agent will reproduce
+	cooperateWithSame 		- Boolean value determining whether or not the
+								agent cooperates with the same race
+	cooperateWithDifferent 	- Boolean value determining whether or not the
+								agent cooperates with different races
+	x 						- The x value of the cell the agent is occupying
+	y 						- The y value of the cell the agent is occupying
+**
+*/
 public class Agent {
 
 	//Defines the unique 'races' of people in the model. 
@@ -179,6 +201,7 @@ public class Agent {
 		}
 	}
 
+	//This sets the Agent's probability to reproduce to the CA's PTR
 	public void resetPTR() {
 		this.probReproduce = CellularAutomaton.ptr;
 	}

@@ -1,3 +1,26 @@
+/**
+**
+	Grid.java
+	The Grid class for the system replicating the Ethnocentrism
+	model used for Assignment 1 of SWEN40004 - Modelling Complex Software
+	Systems
+
+	Edward Crupi 538156 & Naser Soueid 359161
+
+	@@Class Variables
+	cell 		- A 2 dimensional array of Cells making up the grid
+
+	@Instance Variables
+	width
+	height
+	CC 			- The number of agents of bias 'Altruist'
+	CD			- The number of agents of bias 'Ethnocentric'
+	DD			- The number of agents of bias 'Egoist'
+	DC			- The number of agents of bias 'Cosmopolitan'
+	timestamp	- The time indicating what the name of the output file shall
+					be saved as
+**
+*/
 import java.util.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,7 +35,7 @@ public class Grid {
 	String timestamp;
 	public static Cell[][] cell;
 	
-	//Generates a grid
+	//Grid Constructor
 	public Grid (int newWidth, int newLength, boolean filled)
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("MM_dd_HH_mm_ss");
@@ -50,6 +73,7 @@ public class Grid {
 		}
 	}
 
+	//Prints the grid
 	public Grid printGrid(){
 		for(int y = 0; y < this.height; y++)
 		{
@@ -65,6 +89,16 @@ public class Grid {
 		return this;
 	}
 
+	/*
+	**
+		Updates the grid using the 5 iteration methods:
+			Immigration
+			Interaction
+			Reproduction
+			Death
+			Report Results
+	**
+	*/
 	public Grid update(){
 		int counter = 0;
 		
@@ -127,6 +161,7 @@ public class Grid {
 		return this;
 	}
 
+	//Prints stats to the output file determined by the `timestamp` variable
 	public Grid printStats(){
 		System.out.println("Strategy counts");
                 String counts = new String(CC+","+CD+","+DD+","+DC);
@@ -220,6 +255,7 @@ public class Grid {
 		return result;
 	}
 
+	//Updates the CC, CD, DD and DC instance variables
 	public void countCell(Cell x){
 		CC = (x.getOccupyingAgent().bias == "ALTRUIST") ? CC+1 : CC;
 		CD = (x.getOccupyingAgent().bias == "ETHNOCENTRIC") ? CD+1 : CD;
