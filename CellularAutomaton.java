@@ -30,10 +30,10 @@ public class CellularAutomaton {
 	public static Grid grid;
 
 	public final static double costOfGiving = 0.01;
-	public final static double benefitOfReceiving = 0.01;
-	public final static double ptr = 0.01; //probability of reproducing per tick
+	public final static double benefitOfReceiving = 0.03;
+	public final static double ptr = 0.12; //probability of reproducing per tick
 	public final static double dr = 0.1;	//probability of death per tick
-	public final static int maxImmigrants = 100;//per tick
+	public final static int maxImmigrants = 1;//per tick
 	public final static double mutationRate = 0.005;
 	
 	/*

@@ -79,34 +79,92 @@ A comparison of the frequency histograms as well as the Kolgorov-Smirnov test re
 
 We repeated this test with a fully populated grid and found that, contrary to our expectation, a comparison of the relevant histograms as well as the results of a Kolgorov-Smirnov test of the output from Deterministic vs Stochastic updating reveals that the resulting distributions of generated values are significantly different. 
 
-Once again our stochastically updating java implementation more closely matches the equivalent NetLogo output.
+Our stochastically updating java implementation more closely matches the equivalent NetLogo output.
 
 ##Experiment 2: NetLogo vs. Java with Stochastic Updating
 ###Default values
+Using the default values defined in the previous section resulted in a normally distributed range of values after 350 ticks with similar means and variances. KS testing indicates that both sets of data represent the same underlying distribution at a confidence level of 0.05.
 
+Please see Appendix Figure XX - XX for the full set of descriptive statistics.
 
 
 ###Joint Variation
+Here we test the two models given four sets of parameters. We have tried to include parameter values that may represent communities with certain traits, such as predominantly immigration driven communities or insular communities, as well as values that represent unrealistic scenarios at the ends of the paramater's bounds.
 
+a) 
 
+```
+mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+```
+
+b) 
+
+```
+mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+```
+
+c) 
+
+```
+mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+```
+
+d) 
+
+```
+mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+```
+
+e) 
+
+```
+mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+```
 
 #Discussion
+
+
 Discuss inherent bias to birth to left of agent if matrix is sparse due to reproduce function's implementation. (looks for empty space at left first)
 
-Discuss use of Kolmogorov-Smirnov with relatively small samples
-Discuss choice of KS given apparently normally distributed results. Was it necessary? Put choice down to the fact that the Shapiro-Wilk measured greater normality in NetLogo output vs our own, and KS allowed our tests to remain robust to samples that were not normally distributed. 
+The decision to use both Kolmogorov-Smirnov tests as well as comparing the output from Shapiro-Wilks tests was based on their respective sensitivities to sample size. The first is suited to larger sets of data, while sets too large can bias the latter. To avoid issues regarding the sample size chosen, we've used both and provided histograms of the output we considered.
 
-Discuss use of Shapiro-Wilk and introduced bias by large datasets (ours is not too large, relatively speaking)
+It worth considering that the output from the NetLogo model seems to fit a normal distribution with greater certainty than that from the Java model. Our use of KS allowed us to run our test regardless of the data's underlying distribution as it is a nonparametrized statistic.
 
-Shapiro Wilk seems to suggest normal distribution quite strongly, particularly for NetLogo output. Discuss.
+While our replicated model does appear to faithfully replicate the NetLogo model, it is important to note the following limitations in our testing;
 
-
-Discuss use of histogram to verify result of Shapiro-Wilk
-
-Discuss that most comparisons test only on CD, using as an indicator. Not enough time to run and compare for all. 
-
-Discuss possibility of getting multiple samples from surrounding tick numbers to improve sample size without large computation cost. Might provide better 
+- 
+Histograms and statistical tests were generated given only the number of Ethnocentrics.
+-
+Could have used larger sample sets
+Possibility of getting multiple samples from surrounding tick numbers to improve sample size without large computation cost. Might provide better 
 results.
+-
+Tests run at essentially arbitrary combinations of inputs, systematic parameter sweeps would be better
 
 #References
 

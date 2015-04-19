@@ -373,7 +373,7 @@ mutation-rate
 mutation-rate
 0.0
 1.0
-0.0050
+0.15
 0.0010
 1
 NIL
@@ -418,7 +418,7 @@ initial-PTR
 initial-PTR
 0.0
 1.0
-0.12
+0.75
 0.01
 1
 NIL
@@ -448,7 +448,7 @@ gain-of-receiving
 gain-of-receiving
 0.0
 1.0
-0.03
+0.25
 0.01
 1
 NIL
@@ -957,13 +957,13 @@ setup-full repeat 150 [ go ]
   <experiment name="empty" repetitions="200" runMetricsEveryStep="true">
     <setup>setup-full</setup>
     <go>go</go>
-    <exitCondition>reach-limit 350</exitCondition>
+    <exitCondition>reach-limit 500</exitCondition>
     <metric>cd-sum</metric>
     <enumeratedValueSet variable="gain-of-receiving">
-      <value value="0.03"/>
+      <value value="0.25"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initial-ptr">
-      <value value="0.12"/>
+      <value value="0.75"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="immigrants-per-day">
       <value value="1"/>
@@ -972,7 +972,7 @@ setup-full repeat 150 [ go ]
       <value value="0.5"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="mutation-rate">
-      <value value="0.0050"/>
+      <value value="0.15"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="cost-of-giving">
       <value value="0.01"/>
