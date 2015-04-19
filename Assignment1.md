@@ -19,7 +19,7 @@ In the world of the Ethnocentrism model there are 4 distinct strategies an Agent
 The model is a complex system, it can be described as such due to four defining properties: Emergence, Self-Organization, Decentralization and propensity for Feedback.  The model shows emergent grouping of ethnic behaviour that organizes itself from the simple evolutionary rules of local competition between individuals. The model is a decentralized (agent-based, each agent is autonomous) cellular-automaton where there is no single controller or 'leader' that is sensitive to fluctuations in group size based on the size of the grid. It is due to this emergent, self-organizing, decentralized behaviour and sensitivity to feedback that the model may be described as a complex system. 
 
 #Model Design
-The NetLogo model has many reporting functions that it uses to show the state of the system at any given passed moment in time. The main variables being reported were the number of 
+The NetLogo model has many reporting functions that it uses to show the state of the system at any given passed moment in time. The main variables being reported were the number CC, CD, DD and DC agents extant within the system 
 
 ##Overview
 The model evolves with one-move Prisoner's Dilemma type interactions ([Rapoport & Chammah,1970](#references)) occuring at every step, where there is a price to be payed in helping someone whilst also conversely a benefit to be gained in being helped by someone. To replicate the model in Java a CellularAutomaton class was created that was comprised of a Grid instance than contained many Cell insctances that may or may not (depending on input) have occupying Agent instance. A UML interpretation of the system is shown below.
@@ -42,27 +42,42 @@ There are 5 main methods within our model of Ethnocentrism that determines the f
 Each step itself must iterate over all the agents and perform its necessary function to update the state of the system.
 
 ##Modelling Techniques
-The system uses a reporting method that outputs the numbers of Ethnocentric, Cosmopolitan, Egoistic and Altruistic agents as 4 respective variables: `CD`, `DC`, `DD` and `CC`. These are the main variables we use to compare our models for similarity of output.
+Our system uses a reporting method that outputs the numbers of Ethnocentric, Cosmopolitan, Egoistic and Altruistic agents as 4 respective variables: `CD`, `DC`, `DD` and `CC`. These are the main variables we use to compare our models for similarity of output.
 
 #Experimentation
-We aim to explore the following hypothesis:
+We explore the following hypotheses:
 
-1. The results from the Java implemnentation are robust against a change from deterministic updating (top left to bottom right) to stochastic updating.
+1. The results from the Java implementation are robust against a change from deterministic updating (top left to bottom right) to stochastic updating.
 2. The Java implementation will produce output consistent with the NetLogo implementation.
 
 We are operating under the hypothesis that there will be little difference in the two updating methods in scenarious with fairly densely populated grids. Deterministic updating may lead to population clusters around the top of the grid where the evolving populations are small, thus starting with an empty grid, relatively high death rates, low immigration allowances relative to the maximum number of agents and low probabilities of reproduction are more likely to manifest this behaviour. If there are any differences between the two updating methods, they are likely to be more blatent at these parameter values and thus easier to test for.
 
-All tests will be run only on the number of Ethnocentrics at tick 350. Through repeated observation of the output of all three variations of the model tested, this appers to represent a sufficiently stable, representative point in the output. Due to experimental limitations, testing on the number of the other three classes is done only between the NetLogo model and the Java implementation to give some insight into whether they are consistent. 
+All tests will be run only on the number of Ethnocentrists at tick 350. Through repeated observation of the output of all three variations of the model tested, this appers to represent a sufficiently stable, representative point in the output. Due to experimental limitations, testing on the number of the other three classes is done only between the NetLogo model and the Java implementation to give some insight into whether they are consistent. 
 
 #Results
-##Experiment 1: Deterministic vs. Stochastic Updating
-The updating method used by NetLogo is not explicitly stated. Here we will see if a change in updating method results in a systematic change in the output of our Java model, and then explore which, if either, produce results more statistically similar to the NetLogo model.
+##Analysing the Output
+###Experiment 1: Deterministic vs. Stochastic Updating
+The updating method used by NetLogo is not explicitly stated. Here we see if a change in updating method results in a systematic change in the output of our Java model, and then explore which, if either, produce results more statistically similar to the NetLogo model.
 
-Output of our Java model is compared at NetLogo's default parameter settings of..
+Below are comparisons of the output of our Java model using NetLogo's default parameter settings, starting with an empty grid:
 
-A comparison of the frequency histograms as well as the Kolgorov-Smirnov test reveals that, at the default settings (with the initial state of the system unpopulated and a limit of 1 immigrant per turn) on a 30x30 space, the results are significantly different. Our results imply that at these settings stochastic updating matches the output from NetLogo far more closesly. 
+```
+mutation-rate 								= .0050
+death-rate									= .1
+immigrants-per-day 							= 1
+immigrant-chance-cooperate-with-same 		= .5
+immigrant-change-cooperate-with-different	= .5
+initial-PTR									= .12
+cost-of-giving								= .01
+gain-of-receiving							= .03
+```
 
-We repeated this test, this time starting with a fully populated grid, with all other parameters left the same. Surprisingly, a comparison of the relevant histograms, as well as the results of a Kolgorov-Smirnov test of Deterministic vs Stochastic updating reveals that the resulting distribution of output values are significantly different. 
+![Comparison of Outputs](Default Run/comparison.png)\
+\centerline{Figure 2. Comparison of Model Outputs}
+
+A comparison of the frequency histograms as well as the Kolgorov-Smirnov test reveals that at the default settings (with the initial state of the system unpopulated and a limit of 1 immigrant per turn) on a 30x30 space reveals that the results are significantly different. Our results imply that at these settings with stochastic updating matches the output from NetLogo far more closesly. 
+
+We repeat this test, this time starting with a fully populated grid, with all other parameters left the same. Surprisingly, a comparison of the relevant histograms, as well as the results of a Kolgorov-Smirnov test of Deterministic vs Stochastic updating reveals that the resulting distribution of output values are significantly different. 
 
 Once again our stochastically updating java implementation more closely matches the equivalent NetLogo output.
 
@@ -99,9 +114,7 @@ results.
 
 [Rapoport & Chammah, 1970](http://www.press.umich.edu/pdf/9780472061655-fm.pdf), 'Prisoner's Dilemma - A Study in Conflict and Cooperation', The University of Michigan, ISBN 0-472-96165-8
 
-[Huntington, 1996](http://www.academia.edu/4610592/Samuel_P_Huntington_The_Clash_of_Civilizations_and_the_Remaking_of_World_Order_1996) The Clash of Civilizations and the Remaking of World
-Order. New York: Simon and Schuster, ISBN 0-684-81164-2
-
+[Huntington, 1996](http://www.academia.edu/4610592/Samuel_P_Huntington_The_Clash_of_Civilizations_and_the_Remaking_of_World_Order_1996) The Clash of Civilizations and the Remaking of World Order. New York: Simon and Schuster, ISBN 0-684-81164-2
 
 #Appendix
 ![NetLogo](Histograms/NetLogoEmptyDefaultHistogram.png)
@@ -123,13 +136,3 @@ Order. New York: Simon and Schuster, ISBN 0-684-81164-2
 \centerline{Figure 1.5.}
 
 ![Java - Deterministic](Histograms/JavaFullDeterministicDefault.png)
-\centerline{Figure 1.6.}
-
-![Java: Full, Stochastic vs Deterministic, Kolmogorov-Smirnov](Tables/KSJavaDetvsJavaStochDefaultFull.png)
-\centerline{Figure 1.4.}
-
-![NetLogo vs Java, Empty, Kolmogorov-Smirnov](Tables/NetLogoJavaDefaultEmptyKS.png)
-\centerline{Figure 1.4.}
-
-![NetLogo vs Java, Full, Kolmogorov-Smirnov](Tables/KSNetLogoJavaDefaultFull.png)
-\centerline{Figure 1.4.}
