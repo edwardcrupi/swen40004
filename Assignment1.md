@@ -77,7 +77,7 @@ gain-of-receiving							= .03
 
 A comparison of the frequency histograms as well as the Kolgorov-Smirnov test reveals that at the default settings (with the initial state of the system unpopulated and a limit of 1 immigrant per turn) on a 30x30 space reveals that the results are significantly different. Our results imply that at these settings with stochastic updating matches the output from NetLogo far more closesly. 
 
-We repeat this test, this time starting with a fully populated grid, with all other parameters left the same. Surprisingly, a comparison of the relevant histograms, as well as the results of a Kolgorov-Smirnov test of Deterministic vs Stochastic updating reveals that the resulting distribution of output values are significantly different. 
+We repeated this test with a fully populated grid and found that, contrary to our expectation, a comparison of the relevant histograms as well as the results of a Kolgorov-Smirnov test of the output from Deterministic vs Stochastic updating reveals that the resulting distributions of generated values are significantly different. 
 
 Once again our stochastically updating java implementation more closely matches the equivalent NetLogo output.
 
