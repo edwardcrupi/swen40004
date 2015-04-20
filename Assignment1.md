@@ -72,7 +72,7 @@ cost-of-giving								= .01
 gain-of-receiving							= .03
 ```
 
-![Comparison of Outputs](Default Run/comparison.png)\
+![Comparison of Outputs](comparison.png)\
 \centerline{Figure 2. Comparison of Model Outputs}
 
 A comparison of the frequency histograms as well as the Mann-Whitney test reveals that at the default settings (with the initial state of the system unpopulated and a limit of 1 immigrant per turn) on a 30x30 space reveals that the results are significantly different. Our results imply that stochastic updating matches the behaviour of the NetLogo implementation more closely. 
@@ -128,6 +128,8 @@ Two-tailed p-value: 3.69074E-18
 
 Histograms:
 
+![](HIGHCBlowPTRIMM.png)
+
 b) 
 
 Where birth and mutation are the dominant factors
@@ -146,6 +148,8 @@ Two-tailed p-value: 1.47185E-12
 
 Histograms:
 
+![](HMUTATE.png)
+
 c) 
 Where death and initial probability to reproduce are set relatively high
 
@@ -162,6 +166,8 @@ Mann-Whitney enforces the null hypothesis.
 Two-tailed p-value: 7.02225E-05
 
 Histograms:
+
+![](PTRDOM.png)
 
 d) 
 Where immigration is the dominant factor
@@ -180,6 +186,8 @@ Two-tailed p-value: 4.48367E-20
 
 Histograms:
 
+![](IMMDOM.png)
+
 #Discussion
 
 The results of our tests strongly suggest that the models are equivalent. The largest p-value obtained was 0.00007, which accepts the null-hypothesis at alpha = 0.01.
@@ -191,7 +199,6 @@ The Mann-Whitney test assumes independant, ordinal observations. Given that each
 It worth considering that the output from the NetLogo model seems to fit a normal distribution with greater certainty than that from the Java model, which at times produced distributions not deemed normal by a Shapiro-Wilks test with an alpha of 0.5. Our use of the non-parametric Mann-Whitney test allowed us to determine that, despite this, the datasets were likely drawn from the same distribution.
 
 While our replicated model does appear to faithfully replicate the NetLogo model, it is important to note the following limitations in our testing;
-
 - 
 Histograms and statistical tests were generated given only the number of Ethnocentrics.
 -
@@ -201,7 +208,8 @@ results.
 -
 Tests run at essentially arbitrary combinations of inputs, systematic parameter sweeps would be better
 -
-Discuss inherent bias to birth to left of agent if matrix is sparse due to reproduce function's implementation. (looks for empty space at left first)
+The Java implementation has an inherent bias to birth to left of agent if matrix is sparse due to reproduce function's implementation (looks for empty space at left first).
+
 
 #References
 

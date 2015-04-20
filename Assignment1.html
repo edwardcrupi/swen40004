@@ -1017,7 +1017,7 @@ body .markdown-body
 </style><title>Assignment1</title></head><body><article class="markdown-body"><p>%SWEN40004 - Modelling Complex Software Systems<br />
 %Naser Soueid 359161 &amp; Edward Crupi 538156</p>
 <h1 id="aims"><a name="user-content-aims" href="#aims" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Aims</h1>
-<p>The aim of this study is to examine the similarities and differences in behaviour of two software implementations of the Ethnocentrism model first described by Ross Axelrod and Ross Hammond (<a href="#references">2003</a>). The first model examined is a NetLogo implementation that is included as part of the NetLogo model library, the second is our own implementation, written in Java and is an attempt to replicate the first NetLogo model. Both implementations are examined statistically to try and discern if they can be determined to follow a normal distribution via Shapiro Wilks tests, and if they appear to represent the same underlying solution set using Kolmogorov-Smirnov testing. The outputs are also examined as line graphs of multiple runs and as histograms to verify the results of these tests visually.</p>
+<p>The aim of this study is to examine the similarities and differences in behaviour of two software implementations of the Ethnocentrism model first described by Ross Axelrod and Ross Hammond (<a href="#references">2003</a>). The first model examined is a NetLogo implementation that is included as part of the NetLogo model library, the second is our own implementation, written in Java and is an attempt to replicate the first NetLogo model. Both implementations are examined statistically to try and discern if they can be determined to follow a normal distribution via Shapiro Wilks tests, and if they appear to represent the same underlying solution set using Mann-Whitney testing. Finally the outputs are also examined as line graphs of multiple runs and as histograms to verify the results of these tests visually.</p>
 <h1 id="background"><a name="user-content-background" href="#background" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Background</h1>
 <p>Ethnocentrism is a set of attitudes and behaviours ubiquitous in our world, manifested in the formation of communities, nationalistic zeal, and similar examples of collective action based on like individual&rsquo;s mutually recognized common identity. Ethnocentrism refers to the tendency to cooperate with members of the same ethnic type and to avoid cooperating with members of another ethnic type. It has been said that the world peace&rsquo;s biggest threat is the &lsquo;clash of civilizations&rsquo; (<a href="#references">Huntington, 1996</a>). This makes Axelrod &amp; Hammond&rsquo;s model and the notion of ethnocentrism itself a particularly interesting domain. The model aims to represent the emergent cooperation strategies in areas where different ethnicities coexist.</p>
 <h2 id="agents"><a name="user-content-agents" href="#agents" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Agents</h2>
@@ -1072,66 +1072,89 @@ cost-of-giving                              = .01
 gain-of-receiving                           = .03
 </code></pre>
 
-<p><img alt="Comparison of Outputs" src="Default" title="Run/comparison.png" />\<br />
+<p><img alt="Comparison of Outputs" src="///C://Users/n/Documents/GitHub/swen40004/comparison.png" />\<br />
 \centerline{Figure 2. Comparison of Model Outputs}</p>
-<p>A comparison of the frequency histograms as well as the Kolgorov-Smirnov test reveals that at the default settings (with the initial state of the system unpopulated and a limit of 1 immigrant per turn) on a 30x30 space reveals that the results are significantly different. Our results imply that at these settings with stochastic updating matches the output from NetLogo far more closesly. </p>
-<p>We repeated this test with a fully populated grid and found that, contrary to our expectation, a comparison of the relevant histograms as well as the results of a Kolgorov-Smirnov test of the output from Deterministic vs Stochastic updating reveals that the resulting distributions of generated values are significantly different. </p>
-<p>Our stochastically updating java implementation more closely matches the equivalent NetLogo output.</p>
+<p>A comparison of the frequency histograms as well as the Mann-Whitney test reveals that at the default settings (with the initial state of the system unpopulated and a limit of 1 immigrant per turn) on a 30x30 space reveals that the results are significantly different. Our results imply that stochastic updating matches the behaviour of the NetLogo implementation more closely. </p>
+<p>We repeated this test with a fully populated grid and found that, contrary to our expectation, a comparison of the relevant histograms as well as the results of a Mann-Whitney test of the output from Deterministic vs Stochastic updating reveals that the resulting distributions of generated values are significantly different.</p>
+<p>Null Hypothesis: Java Deterministic Updating = Java Stochastic Updating<br />
+two-tailed p-value: 0.045714198</p>
+<p>Null Hypothesis: NetLogo Model = Java Deterministic Updating<br />
+two-tailed p-value: 0.000140141</p>
+<p>Null Hypothesis: Netlogo Model = Java Stochastic Updating<br />
+two-tailed p-value: 2.99294E-08</p>
+<p>The results above reveal that the implementation with stochastic updating generates output that more closely matches the output from the NetLogo model.</p>
 <h2 id="experiment-2-netlogo-vs-java-with-stochastic-updating"><a name="user-content-experiment-2-netlogo-vs-java-with-stochastic-updating" href="#experiment-2-netlogo-vs-java-with-stochastic-updating" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Experiment 2: NetLogo vs. Java with Stochastic Updating</h2>
 <h3 id="default-values"><a name="user-content-default-values" href="#default-values" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Default values</h3>
-<p>Using the default values defined in the previous section resulted in a normally distributed range of values after 350 ticks with similar means and variances. KS testing indicates that both sets of data represent the same underlying distribution at a confidence level of 0.05.</p>
-<p>Please see Appendix Figure XX - XX for the full set of descriptive statistics.</p>
-<h3 id="joint-variation"><a name="user-content-joint-variation" href="#joint-variation" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Joint Variation</h3>
+<p>Using the default values defined in the previous section resulted in a normally distributed range of values after 350 ticks with similar means and variances. Mann-Whitney testing indicates that both sets of data represent the same underlying distribution at a confidence level of 0.01.</p>
+<p>Mann-Whitney enforces the null hypothesis.<br />
+Two-tailed p-value: 2.99294E-08</p>
+<p>Histograms:</p>
+<h3 id="joint-parameter-variation"><a name="user-content-joint-parameter-variation" href="#joint-parameter-variation" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Joint Parameter Variation</h3>
 <p>Here we test the two models given four sets of parameters. We have tried to include parameter values that may represent communities with certain traits, such as predominantly immigration driven communities or insular communities, as well as values that represent unrealistic scenarios at the ends of the paramater&rsquo;s bounds.</p>
+<p>Null hypothesis:<br />
+- Observations derived from same distribution</p>
 <p>a) </p>
+<p>Where reproduction is based heavily on cooperation relative to other factors </p>
 <pre><code>mutation-rate                               = .0050
 death-rate                                  = .1
 immigrants-per-day                          = 1
-initial-PTR                                 = .12
-cost-of-giving                              = .01
-gain-of-receiving                           = .03
+initial-PTR                                 = .01
+cost-of-giving                              = .12
+gain-of-receiving                           = .24
 </code></pre>
 
+<p>The output of the models diverge slightly. Both lose their normality, with the NetLogo model returning a higher mean number of ethnocentrics relative to the Java implementation. </p>
+<p>Mann-Whitney enforces the null hypothesis.<br />
+Two-tailed p-value: 3.69074E-18</p>
+<p>Histograms:</p>
+<p><img alt="" src="///C://Users/n/Documents/GitHub/swen40004/HIGHCBlowPTRIMM.png" /></p>
 <p>b) </p>
-<pre><code>mutation-rate                               = .0050
+<p>Where birth and mutation are the dominant factors</p>
+<pre><code>mutation-rate                               = .150
 death-rate                                  = .1
 immigrants-per-day                          = 1
-initial-PTR                                 = .12
+initial-PTR                                 = .75
 cost-of-giving                              = .01
-gain-of-receiving                           = .03
+gain-of-receiving                           = .25
 </code></pre>
 
-<p>c) </p>
+<p>Mann-Whitney enforces the null hypothesis.<br />
+Two-tailed p-value: 1.47185E-12</p>
+<p>Histograms:</p>
+<p><img alt="" src="///C://Users/n/Documents/GitHub/swen40004/HMUTATE.png" /></p>
+<p>c) <br />
+Where death and initial probability to reproduce are set relatively high</p>
+<pre><code>mutation-rate                               = .0050
+death-rate                                  = .2
+immigrants-per-day                          = 1
+initial-PTR                                 = .3
+cost-of-giving                              = .01
+gain-of-receiving                           = .01
+</code></pre>
+
+<p>Mann-Whitney enforces the null hypothesis.<br />
+Two-tailed p-value: 7.02225E-05</p>
+<p>Histograms:</p>
+<p><img alt="" src="///C://Users/n/Documents/GitHub/swen40004/PTRDOM.png" /></p>
+<p>d) <br />
+Where immigration is the dominant factor</p>
 <pre><code>mutation-rate                               = .0050
 death-rate                                  = .1
-immigrants-per-day                          = 1
-initial-PTR                                 = .12
+immigrants-per-day                          = 250
+initial-PTR                                 = .01
 cost-of-giving                              = .01
-gain-of-receiving                           = .03
+gain-of-receiving                           = .01
 </code></pre>
 
-<p>d) </p>
-<pre><code>mutation-rate                               = .0050
-death-rate                                  = .1
-immigrants-per-day                          = 1
-initial-PTR                                 = .12
-cost-of-giving                              = .01
-gain-of-receiving                           = .03
-</code></pre>
-
-<p>e) </p>
-<pre><code>mutation-rate                               = .0050
-death-rate                                  = .1
-immigrants-per-day                          = 1
-initial-PTR                                 = .12
-cost-of-giving                              = .01
-gain-of-receiving                           = .03
-</code></pre>
-
+<p>Mann-Whitney enforces the null hypothesis.<br />
+Two-tailed p-value: 4.48367E-20</p>
+<p>Histograms:</p>
+<p><img alt="" src="///C://Users/n/Documents/GitHub/swen40004/IMMDOM.png" /></p>
 <h1 id="discussion"><a name="user-content-discussion" href="#discussion" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Discussion</h1>
-<p>Discuss inherent bias to birth to left of agent if matrix is sparse due to reproduce function&rsquo;s implementation. (looks for empty space at left first)</p>
-<p>The decision to use both Kolmogorov-Smirnov tests as well as comparing the output from Shapiro-Wilks tests was based on their respective sensitivities to sample size. The first is suited to larger sets of data, while sets too large can bias the latter. To avoid issues regarding the sample size chosen, we&rsquo;ve used both and provided histograms of the output we considered.</p>
-<p>It worth considering that the output from the NetLogo model seems to fit a normal distribution with greater certainty than that from the Java model. Our use of KS allowed us to run our test regardless of the data&rsquo;s underlying distribution as it is a nonparametrized statistic.</p>
+<p>The results of our tests strongly suggest that the models are equivalent. The largest p-value obtained was 0.00007, which accepts the null-hypothesis at alpha = 0.01.</p>
+<p>The decision to use both Mann-Whitney tests as well as comparing the output from Shapiro-Wilks tests was based on their respective sensitivities to sample size. The first is suited to larger sets of data, while sets too large can bias the latter. To avoid issues regarding the sample size chosen, we&rsquo;ve used both and provided histograms of the output we considered. </p>
+<p>The Mann-Whitney test assumes independant, ordinal observations. Given that each datapoint is derived from a unique run of the models, the observations are not influenced by the outcome of previous runs and satisfy this condition. </p>
+<p>It worth considering that the output from the NetLogo model seems to fit a normal distribution with greater certainty than that from the Java model, which at times produced distributions not deemed normal by a Shapiro-Wilks test with an alpha of 0.5. Our use of the non-parametric Mann-Whitney test allowed us to determine that, despite this, the datasets were likely drawn from the same distribution.</p>
 <p>While our replicated model does appear to faithfully replicate the NetLogo model, it is important to note the following limitations in our testing;</p>
 <ul>
 <li>
@@ -1141,7 +1164,9 @@ Could have used larger sample sets<br />
 Possibility of getting multiple samples from surrounding tick numbers to improve sample size without large computation cost. Might provide better <br />
 results.<br />
 -<br />
-Tests run at essentially arbitrary combinations of inputs, systematic parameter sweeps would be better</li>
+Tests run at essentially arbitrary combinations of inputs, systematic parameter sweeps would be better<br />
+-<br />
+Discuss inherent bias to birth to left of agent if matrix is sparse due to reproduce function&rsquo;s implementation. (looks for empty space at left first)</li>
 </ul>
 <h1 id="references"><a name="user-content-references" href="#references" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>References</h1>
 <p><a href="http://www-personal.umich.edu/~axe/research/AxHamm_Ethno.pdf">Axelrod &amp; Hammond, 2003</a>, Midwest Political Science Convention, April 3-6, 2003, Chicago, IL</p>
@@ -1154,7 +1179,7 @@ Tests run at essentially arbitrary combinations of inputs, systematic parameter 
 \centerline{Figure 1.2.}</p>
 <p><img alt="Java - Deterministic" src="///C://Users/n/Documents/GitHub/swen40004/Histograms/JavaDetEmptyDefaultHistogram.png" /><br />
 \centerline{Figure 1.3.}</p>
-<p><img alt="Java: Empty, Stochastic vs Deterministic, Kolmogorov-Smirnov" src="///C://Users/n/Documents/GitHub/swen40004/Tables/StochvsDetEmptyKS.png" /><br />
+<p><img alt="Java: Empty, Stochastic vs Deterministic, Kolmogorov-Smirnov" src="Tables/StochvsDetEmptyKS.png" /><br />
 \centerline{Figure 1.4.}</p>
 <p><img alt="NetLogo" src="///C://Users/n/Documents/GitHub/swen40004/Histograms/NetLogoFullDefault.png" /><br />
 \centerline{Figure 1.4.}</p>
@@ -1162,13 +1187,13 @@ Tests run at essentially arbitrary combinations of inputs, systematic parameter 
 \centerline{Figure 1.5.}</p>
 <p><img alt="Java - Deterministic" src="///C://Users/n/Documents/GitHub/swen40004/Histograms/JavaFullDeterministicDefault.png" /><br />
 \centerline{Figure 1.5.}</p>
-<p><img alt="Java: Full, Stochastic vs Deterministic, Kolmogorov-Smirnov" src="///C://Users/n/Documents/GitHub/swen40004/Tables/KSJavaDetvsJavaStochDefaultFull.png" /><br />
+<p><img alt="Java: Full, Stochastic vs Deterministic, Kolmogorov-Smirnov" src="Tables/KSJavaDetvsJavaStochDefaultFull.png" /><br />
 \centerline{Figure 1.4.}</p>
-<p><img alt="NetLogo v Java Stochastic, Empty, Kolmogorov-Smirnov" src="///C://Users/n/Documents/GitHub/swen40004/Tables/NetLogoJavaDefaultEmptyKS.png" /><br />
+<p><img alt="NetLogo v Java Stochastic, Empty, Kolmogorov-Smirnov" src="Tables/NetLogoJavaDefaultEmptyKS.png" /><br />
 \centerline{Figure 1.4.}</p>
-<p><img alt="NetLogo v Java Stochastic, Full, Kolmogorov-Smirnov" src="///C://Users/n/Documents/GitHub/swen40004/Tables/KSNetLogoJavaDefaultFull.png" /><br />
+<p><img alt="NetLogo v Java Stochastic, Full, Kolmogorov-Smirnov" src="Tables/KSNetLogoJavaDefaultFull.png" /><br />
 \centerline{Figure 1.4.}</p>
-<p><img alt="NetLogo v Java Stochastic, Full, Kolmogorov-Smirnov" src="///C://Users/n/Documents/GitHub/swen40004/Tables/KSNetLogoJavaDefaultFull.png" /><br />
+<p><img alt="NetLogo v Java Stochastic, Full, Kolmogorov-Smirnov" src="Tables/KSNetLogoJavaDefaultFull.png" /><br />
 \centerline{Figure 1.4.}</p>
 <p><img alt="NetLogo Normality - Shapiro Wilk" src="///C://Users/n/Documents/GitHub/swen40004/Tables/NetLogoEmptyDefaultDS.png" /><br />
 \centerline{Figure 1.4.}</p>
