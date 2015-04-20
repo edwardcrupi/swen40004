@@ -1031,7 +1031,7 @@ body .markdown-body
 <h2 id="complexity"><a name="user-content-complexity" href="#complexity" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Complexity</h2>
 <p>The model is a complex system, it can be described as such due to four defining properties: Emergence, Self-Organization, Decentralization and propensity for Feedback.  The model shows emergent grouping of ethnic behaviour that organizes itself from the simple evolutionary rules of local competition between individuals. The model is a decentralized (agent-based, each agent is autonomous) cellular-automaton where there is no single controller or &lsquo;leader&rsquo; that is sensitive to fluctuations in group size based on the size of the grid. It is due to this emergent, self-organizing, decentralized behaviour and sensitivity to feedback that the model may be described as a complex system. </p>
 <h1 id="model-design"><a name="user-content-model-design" href="#model-design" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Model Design</h1>
-<p>The NetLogo model has many reporting functions that it uses to show the state of the system at any given passed moment in time. The main variables being reported were the number CC, CD, DD and DC agents extant within the system </p>
+<p>The NetLogo model has many reporting functions that it uses to show the state of the system at any given passed moment in time. The main variables being reported were the number CC, CD, DD and DC agents extant within the system and our design will try and mimic this by also reporting these values</p>
 <h2 id="overview"><a name="user-content-overview" href="#overview" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Overview</h2>
 <p>The model evolves with one-move Prisoner&rsquo;s Dilemma type interactions (<a href="#references">Rapoport &amp; Chammah,1970</a>) occuring at every step, where there is a price to be payed in helping someone whilst also conversely a benefit to be gained in being helped by someone. To replicate the model in Java a CellularAutomaton class was created that was comprised of a Grid instance than contained many Cell insctances that may or may not (depending on input) have occupying Agent instance. A UML interpretation of the system is shown below.</p>
 <h2 id="uml-diagram"><a name="user-content-uml-diagram" href="#uml-diagram" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>UML Diagram</h2>
@@ -1075,21 +1075,74 @@ gain-of-receiving                           = .03
 <p><img alt="Comparison of Outputs" src="Default" title="Run/comparison.png" />\<br />
 \centerline{Figure 2. Comparison of Model Outputs}</p>
 <p>A comparison of the frequency histograms as well as the Kolgorov-Smirnov test reveals that at the default settings (with the initial state of the system unpopulated and a limit of 1 immigrant per turn) on a 30x30 space reveals that the results are significantly different. Our results imply that at these settings with stochastic updating matches the output from NetLogo far more closesly. </p>
-<p>We repeat this test, this time starting with a fully populated grid, with all other parameters left the same. Surprisingly, a comparison of the relevant histograms, as well as the results of a Kolgorov-Smirnov test of Deterministic vs Stochastic updating reveals that the resulting distribution of output values are significantly different. </p>
-<p>Once again our stochastically updating java implementation more closely matches the equivalent NetLogo output.</p>
+<p>We repeated this test with a fully populated grid and found that, contrary to our expectation, a comparison of the relevant histograms as well as the results of a Kolgorov-Smirnov test of the output from Deterministic vs Stochastic updating reveals that the resulting distributions of generated values are significantly different. </p>
+<p>Our stochastically updating java implementation more closely matches the equivalent NetLogo output.</p>
 <h2 id="experiment-2-netlogo-vs-java-with-stochastic-updating"><a name="user-content-experiment-2-netlogo-vs-java-with-stochastic-updating" href="#experiment-2-netlogo-vs-java-with-stochastic-updating" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Experiment 2: NetLogo vs. Java with Stochastic Updating</h2>
 <h3 id="default-values"><a name="user-content-default-values" href="#default-values" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Default values</h3>
+<p>Using the default values defined in the previous section resulted in a normally distributed range of values after 350 ticks with similar means and variances. KS testing indicates that both sets of data represent the same underlying distribution at a confidence level of 0.05.</p>
+<p>Please see Appendix Figure XX - XX for the full set of descriptive statistics.</p>
 <h3 id="joint-variation"><a name="user-content-joint-variation" href="#joint-variation" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Joint Variation</h3>
+<p>Here we test the two models given four sets of parameters. We have tried to include parameter values that may represent communities with certain traits, such as predominantly immigration driven communities or insular communities, as well as values that represent unrealistic scenarios at the ends of the paramater&rsquo;s bounds.</p>
+<p>a) </p>
+<pre><code>mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+</code></pre>
+
+<p>b) </p>
+<pre><code>mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+</code></pre>
+
+<p>c) </p>
+<pre><code>mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+</code></pre>
+
+<p>d) </p>
+<pre><code>mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+</code></pre>
+
+<p>e) </p>
+<pre><code>mutation-rate                               = .0050
+death-rate                                  = .1
+immigrants-per-day                          = 1
+initial-PTR                                 = .12
+cost-of-giving                              = .01
+gain-of-receiving                           = .03
+</code></pre>
+
 <h1 id="discussion"><a name="user-content-discussion" href="#discussion" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Discussion</h1>
 <p>Discuss inherent bias to birth to left of agent if matrix is sparse due to reproduce function&rsquo;s implementation. (looks for empty space at left first)</p>
-<p>Discuss use of Kolmogorov-Smirnov with relatively small samples<br />
-Discuss choice of KS given apparently normally distributed results. Was it necessary? Put choice down to the fact that the Shapiro-Wilk measured greater normality in NetLogo output vs our own, and KS allowed our tests to remain robust to samples that were not normally distributed. </p>
-<p>Discuss use of Shapiro-Wilk and introduced bias by large datasets (ours is not too large, relatively speaking)</p>
-<p>Shapiro Wilk seems to suggest normal distribution quite strongly, particularly for NetLogo output. Discuss.</p>
-<p>Discuss use of histogram to verify result of Shapiro-Wilk</p>
-<p>Discuss that most comparisons test only on CD, using as an indicator. Not enough time to run and compare for all. </p>
-<p>Discuss possibility of getting multiple samples from surrounding tick numbers to improve sample size without large computation cost. Might provide better <br />
-results.</p>
+<p>The decision to use both Kolmogorov-Smirnov tests as well as comparing the output from Shapiro-Wilks tests was based on their respective sensitivities to sample size. The first is suited to larger sets of data, while sets too large can bias the latter. To avoid issues regarding the sample size chosen, we&rsquo;ve used both and provided histograms of the output we considered.</p>
+<p>It worth considering that the output from the NetLogo model seems to fit a normal distribution with greater certainty than that from the Java model. Our use of KS allowed us to run our test regardless of the data&rsquo;s underlying distribution as it is a nonparametrized statistic.</p>
+<p>While our replicated model does appear to faithfully replicate the NetLogo model, it is important to note the following limitations in our testing;</p>
+<ul>
+<li>
+<h2 id="histograms-and-statistical-tests-were-generated-given-only-the-number-of-ethnocentrics"><a name="user-content-histograms-and-statistical-tests-were-generated-given-only-the-number-of-ethnocentrics" href="#histograms-and-statistical-tests-were-generated-given-only-the-number-of-ethnocentrics" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Histograms and statistical tests were generated given only the number of Ethnocentrics.</h2>
+<br />
+Could have used larger sample sets<br />
+Possibility of getting multiple samples from surrounding tick numbers to improve sample size without large computation cost. Might provide better <br />
+results.<br />
+-<br />
+Tests run at essentially arbitrary combinations of inputs, systematic parameter sweeps would be better</li>
+</ul>
 <h1 id="references"><a name="user-content-references" href="#references" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>References</h1>
 <p><a href="http://www-personal.umich.edu/~axe/research/AxHamm_Ethno.pdf">Axelrod &amp; Hammond, 2003</a>, Midwest Political Science Convention, April 3-6, 2003, Chicago, IL</p>
 <p><a href="http://www.press.umich.edu/pdf/9780472061655-fm.pdf">Rapoport &amp; Chammah, 1970</a>, &lsquo;Prisoner&rsquo;s Dilemma - A Study in Conflict and Cooperation&rsquo;, The University of Michigan, ISBN 0-472-96165-8</p>
